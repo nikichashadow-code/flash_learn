@@ -8,6 +8,7 @@ import 'welcome_page.dart';
 import 'terminal_comands.dart';
 import 'linux_history_page.dart';
 import 'Linux_Basics.dart'; // Make sure this import is present
+import 'distributions_and_ecosystem.dart'; // Add this import
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,8 +96,10 @@ class _MyAppState extends State<MyApp> {
         '/linux': (context) => const LinuxPage(),
         '/terminal': (context) => const TerminalCommandsPage(),
         '/linux_history': (context) => const LinuxHistoryPage(),
-        '/linux_basics':
-            (context) => const LinuxBasicsPage(), // <-- Add this line
+        '/linux_basics': (context) => const LinuxBasicsPage(),
+        '/linux_distros':
+            (context) =>
+                const DistributionsAndEcosystemPage(), // <-- Add this line
       },
     );
   }

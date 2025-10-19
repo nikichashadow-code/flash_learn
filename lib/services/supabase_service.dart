@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/command.dart';
+import '../models/ecosystem.dart'; // <-- Add this import
 
 class SupabaseService {
   final SupabaseClient supabase = Supabase.instance.client;
@@ -45,5 +46,26 @@ class SupabaseService {
         'flags': newFlags,
       });
     }
+  }
+
+  // --- New additions below ---
+
+  Future<List<Category>> fetchCategories() async {
+    final data = await supabase.from('categories').select() as List<dynamic>;
+    return data.map((json) => Category.fromJson(json)).toList();
+  }
+
+  Future<List<Topic>> fetchTopics(int categoryId) async {
+    final data =
+        await supabase.from('topics').select().eq('category_id', categoryId)
+            as List<dynamic>;
+    return data.map((json) => Topic.fromJson(json)).toList();
+  }
+
+  Future<List<Example>> fetchExamples(int topicId) async {
+    final data =
+        await supabase.from('examples').select().eq('topic_id', topicId)
+            as List<dynamic>;
+    return data.map((json) => Example.fromJson(json)).toList();
   }
 }
