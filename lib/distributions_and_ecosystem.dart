@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'services/supabase_service.dart';
 import 'models/ecosystem.dart';
 
@@ -19,6 +20,17 @@ class _DistributionsAndEcosystemPageState
   void initState() {
     super.initState();
     _categoriesFuture = _service.fetchCategories();
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Could not launch $url')));
+      }
+    }
   }
 
   @override
@@ -115,9 +127,10 @@ class _DistributionsAndEcosystemPageState
                                                                                   icon: const Icon(
                                                                                     Icons.link,
                                                                                   ),
-                                                                                  onPressed: () {
-                                                                                    // You can use url_launcher to open the link
-                                                                                  },
+                                                                                  onPressed:
+                                                                                      () => _launchUrl(
+                                                                                        ex.link!,
+                                                                                      ),
                                                                                 )
                                                                                 : null,
                                                                       ),
