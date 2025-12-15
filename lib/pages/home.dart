@@ -4,8 +4,15 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'terminal_comands.dart'; // Import the TerminalCommandsPage
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,9 @@ class HomePage extends StatelessWidget {
             tooltip: 'Sign Out',
             onPressed: () async {
               await Supabase.instance.client.auth.signOut();
-              Navigator.of(context).pushReplacementNamed('/login');
+              if (mounted) {
+                Navigator.of(context).pushReplacementNamed('/login');
+              }
             },
           ),
         ],
@@ -78,6 +87,14 @@ class HomePage extends StatelessWidget {
                           () =>
                               Navigator.of(context).pushNamed('/linux_distros'),
                     ),
+                    _TopicCard(
+                      icon: Icons.code,
+                      title: 'Terminal Emulator',
+                      onTap:
+                          () => Navigator.of(
+                            context,
+                          ).pushNamed('/terminal_emulator'),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 40),
@@ -114,16 +131,10 @@ class HomePage extends StatelessWidget {
             icon: Icon(Icons.dashboard),
             label: 'Dashboard',
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.linux),
-            label: 'Linux',
-          ),
         ],
-        currentIndex: 0,
+        currentIndex: _currentIndex,
         onTap: (index) {
-          if (index == 2) {
-            Navigator.of(context).pushNamed('/linux');
-          }
+          setState(() => _currentIndex = index);
         },
       ),
     );

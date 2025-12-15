@@ -137,7 +137,7 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
                       border: Border.all(color: Colors.white, width: 3),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.green.withOpacity(0.3),
+                          color: Colors.green.withAlpha((0.3 * 255).round()),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),

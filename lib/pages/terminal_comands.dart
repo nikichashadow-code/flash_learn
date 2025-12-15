@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'models/command.dart';
-import 'services/supabase_service.dart';
+import '../models/command.dart';
+import '../services/supabase_service.dart';
 
 class TerminalCommandsPage extends StatefulWidget {
   const TerminalCommandsPage({super.key});

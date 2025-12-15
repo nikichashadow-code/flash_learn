@@ -26,7 +26,9 @@ class _CreateSetPageState extends State<CreateSetPage> {
         'question': _questionController.text,
         'answer': _answerController.text,
       });
-      Navigator.pop(context, true); // Return to home and refresh
+      if (mounted) {
+        Navigator.pop(context, true); // Return to home and refresh
+      }
     } catch (e) {
       setState(() => _error = e.toString());
     } finally {
@@ -57,21 +59,22 @@ class _CreateSetPageState extends State<CreateSetPage> {
             SizedBox(
               width: double.infinity,
               height: 48,
-              child: _loading
-                  ? const Center(child: CircularProgressIndicator())
-                  : ElevatedButton(
-                      onPressed: _saveSet,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF388E3C),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+              child:
+                  _loading
+                      ? const Center(child: CircularProgressIndicator())
+                      : ElevatedButton(
+                        onPressed: _saveSet,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF388E3C),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: const Text(
+                          'Save Set',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
-                      child: const Text(
-                        'Save Set',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
             ),
           ],
         ),

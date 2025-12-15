@@ -5,10 +5,10 @@ class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
   @override
-  _AuthPageState createState() => _AuthPageState();
+  AuthPageState createState() => AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class AuthPageState extends State<AuthPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLogin = true;
@@ -43,9 +43,13 @@ class _AuthPageState extends State<AuthPage> {
 
         if (res.session != null) {
           // Logged in!
-          Navigator.pushReplacementNamed(context, '/home');
+          if (mounted) {
+            Navigator.pushReplacementNamed(context, '/home');
+          }
         } else {
-          setState(() => _errorMessage = 'Login failed.');
+          if (mounted) {
+            setState(() => _errorMessage = 'Login failed.');
+          }
         }
       } else {
         final res = await Supabase.instance.client.auth.signUp(
@@ -54,17 +58,54 @@ class _AuthPageState extends State<AuthPage> {
         );
 
         if (res.user == null) {
-          setState(() => _errorMessage = 'Signup failed.');
+          if (mounted) {
+            setState(() => _errorMessage = 'Signup failed.');
+          }
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Sign up successful! Check your email to confirm.')),
-          );
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'Sign up successful! Check your email to confirm.',
+                ),
+              ),
+            );
+          }
         }
       }
     } catch (e) {
       setState(() => _errorMessage = e.toString());
     } finally {
       setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _resetPassword() async {
+    if (_emailController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter your email address')),
+      );
+      return;
+    }
+
+    try {
+      await Supabase.instance.client.auth.resetPasswordForEmail(
+        _emailController.text.trim(),
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Password reset link sent to your email'),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
+      }
     }
   }
 
@@ -100,11 +141,10 @@ class _AuthPageState extends State<AuthPage> {
               ),
               const SizedBox(height: 12),
               Text(
-                _isLogin ? 'Login to continue' : 'Create your account to continue',
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 20,
-                ),
+                _isLogin
+                    ? 'Login to continue'
+                    : 'Create your account to continue',
+                style: const TextStyle(color: Colors.white70, fontSize: 20),
               ),
               const SizedBox(height: 36),
               if (_errorMessage != null)
@@ -127,7 +167,10 @@ class _AuthPageState extends State<AuthPage> {
                     borderRadius: BorderRadius.circular(32),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 24,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -144,7 +187,10 @@ class _AuthPageState extends State<AuthPage> {
                     borderRadius: BorderRadius.circular(32),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 24,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -166,9 +212,7 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   const Spacer(),
                   TextButton(
-                    onPressed: () {
-                      // TODO: Forgot password logic
-                    },
+                    onPressed: _resetPassword,
                     child: const Text(
                       'Forgot Password?',
                       style: TextStyle(color: Colors.white70),
@@ -179,23 +223,27 @@ class _AuthPageState extends State<AuthPage> {
               const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
-                child: _loading
-                    ? const Center(child: CircularProgressIndicator())
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(vertical: 18),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32),
+                child:
+                    _loading
+                        ? const Center(child: CircularProgressIndicator())
+                        : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black,
+                            padding: const EdgeInsets.symmetric(vertical: 18),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                          ),
+                          onPressed: _authenticate,
+                          child: Text(
+                            _isLogin ? 'Login' : 'Sign Up',
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        onPressed: _authenticate,
-                        child: Text(
-                          _isLogin ? 'Login' : 'Sign Up',
-                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                      ),
               ),
               const SizedBox(height: 32),
               Row(
