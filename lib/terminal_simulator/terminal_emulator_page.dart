@@ -31,15 +31,34 @@ class _TerminalEmulatorPageState extends State<TerminalEmulatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Terminal Simulator')),
-      body: Column(
-        children: [
-          TerminalOutput(output: _output),
-          TerminalInput(
-            controller: _inputController,
-            onSubmitted: _executeCommand,
-          ),
-        ],
+      backgroundColor: const Color(0xFF1A1410),
+      appBar: AppBar(
+        title: const Text(
+          'Terminal Simulator',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color(0xFF2D2420),
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF1A1410)),
+        child: Column(
+          children: [
+            TerminalOutput(output: _output),
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: Color(0xFF3D3530), width: 1),
+                ),
+              ),
+              child: TerminalInput(
+                controller: _inputController,
+                onSubmitted: _executeCommand,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

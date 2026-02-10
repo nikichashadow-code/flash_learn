@@ -87,38 +87,9 @@ class HomePageState extends State<HomePage> {
                           () =>
                               Navigator.of(context).pushNamed('/linux_distros'),
                     ),
-                    _TopicCard(
-                      icon: Icons.code,
-                      title: 'Terminal Emulator',
-                      onTap:
-                          () => Navigator.of(
-                            context,
-                          ).pushNamed('/terminal_emulator'),
-                    ),
                   ],
                 ),
                 const SizedBox(height: 40),
-                Center(
-                  child: ElevatedButton.icon(
-                    icon: const FaIcon(FontAwesomeIcons.linux),
-                    label: const Text('Start Learning'),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 18,
-                        horizontal: 32,
-                      ),
-                      textStyle: const TextStyle(fontSize: 20),
-                      backgroundColor: Colors.black87,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/linux');
-                    },
-                  ),
-                ),
               ],
             ),
           ),
@@ -127,13 +98,13 @@ class HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: 'Dashboard',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.code), label: 'Terminal'),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {
+          if (index == 1) {
+            Navigator.of(context).pushNamed('/terminal_emulator');
+          }
           setState(() => _currentIndex = index);
         },
       ),
