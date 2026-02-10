@@ -9,6 +9,7 @@ import 'pages/terminal_comands.dart';
 import 'pages/linux_history_page.dart';
 import 'pages/Linux_Basics.dart';
 import 'pages/distributions_and_ecosystem.dart';
+import 'pages/ssh_client_page.dart';
 import 'terminal_simulator/terminal_emulator_page.dart' as terminal_simulator;
 
 void main() async {
@@ -99,6 +100,7 @@ class _MyAppState extends State<MyApp> {
         '/linux_history': (context) => const LinuxHistoryPage(),
         '/linux_basics': (context) => const LinuxBasicsPage(),
         '/linux_distros': (context) => const DistributionsAndEcosystemPage(),
+        '/ssh_client': (context) => const SSHClientPage(),
         '/terminal_emulator':
             (context) => const terminal_simulator.TerminalEmulatorPage(),
       },

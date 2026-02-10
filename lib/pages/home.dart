@@ -98,11 +98,14 @@ class HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.storage), label: 'SSH'),
           BottomNavigationBarItem(icon: Icon(Icons.code), label: 'Terminal'),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {
           if (index == 1) {
+            Navigator.of(context).pushNamed('/ssh_client');
+          } else if (index == 2) {
             Navigator.of(context).pushNamed('/terminal_emulator');
           }
           setState(() => _currentIndex = index);
