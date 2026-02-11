@@ -1,2 +1,1 @@
-## TODO
-[x]- ~~ Implement `InputDecoration` for the terminal simulator page (currently non-existent).~~
+ ~~ Implement `InputDecoration` for the terminal simulator page (currently non-existent).~~
