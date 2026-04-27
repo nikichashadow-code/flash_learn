@@ -9,6 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  dynamic_color: ^1.7.0
   flutter_animate: ^4.5.2
   font_awesome_flutter: ^10.8.0
   supabase_flutter: ^2.9.0
@@ -16,6 +20,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   dartssh2: 2.13.0
   process_run: ^0.14.2
+  shared_preferences: ^2.5.3
       
 dev_dependencies:
   flutter_test:
@@ -24,6 +29,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
-    - .env
+    - assets/.env
     - assets/images/linux_architecture.png
+    - shorebird.yaml

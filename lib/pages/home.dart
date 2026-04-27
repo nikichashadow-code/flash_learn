@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'terminal_comands.dart'; // Import the TerminalCommandsPage
+import '../l10n/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,13 +17,19 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flash Learn'),
+        title: Text(context.l10n.homeTitle),
         actions: [
           IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: context.l10n.settingsTitle,
+            onPressed: () => Navigator.of(context).pushNamed('/settings'),
+          ),
+          IconButton(
             icon: const Icon(Icons.logout),
-            tooltip: 'Sign Out',
+            tooltip: context.l10n.signOut,
             onPressed: () async {
               await Supabase.instance.client.auth.signOut();
               if (mounted) {
@@ -45,9 +52,13 @@ class HomePageState extends State<HomePage> {
                 // Welcome section
                 const SizedBox(height: 32),
                 // Learning topics as cards
-                const Text(
-                  'Explore Topics',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                Text(
+                  context.l10n.exploreTopics,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: scheme.onSurface,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Wrap(
@@ -55,22 +66,25 @@ class HomePageState extends State<HomePage> {
                   runSpacing: 16,
                   children: [
                     _TopicCard(
+                      index: 0,
                       icon: Icons.history,
-                      title: 'History of Linux',
+                      title: context.l10n.topicHistoryOfLinux,
                       onTap:
                           () =>
                               Navigator.of(context).pushNamed('/linux_history'),
                     ),
                     _TopicCard(
+                      index: 1,
                       icon: Icons.computer,
-                      title: 'Linux OS Basics',
+                      title: context.l10n.topicLinuxOsBasics,
                       onTap:
                           () =>
                               Navigator.of(context).pushNamed('/linux_basics'),
                     ),
                     _TopicCard(
+                      index: 2,
                       icon: FontAwesomeIcons.terminal,
-                      title: 'Terminal Commands',
+                      title: context.l10n.topicTerminalCommands,
                       onTap:
                           () => Navigator.push(
                             context,
@@ -81,8 +95,9 @@ class HomePageState extends State<HomePage> {
                           ),
                     ),
                     _TopicCard(
+                      index: 3,
                       icon: Icons.info_outline,
-                      title: 'Distributions & Ecosystem',
+                      title: context.l10n.topicDistrosEcosystem,
                       onTap:
                           () =>
                               Navigator.of(context).pushNamed('/linux_distros'),
@@ -96,10 +111,10 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.storage), label: 'SSH'),
-          BottomNavigationBarItem(icon: Icon(Icons.code), label: 'Terminal'),
+        items: [
+          BottomNavigationBarItem(icon: const Icon(Icons.home), label: context.l10n.navHome),
+          BottomNavigationBarItem(icon: const Icon(Icons.storage), label: context.l10n.navSsh),
+          BottomNavigationBarItem(icon: const Icon(Icons.code), label: context.l10n.navTerminal),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -116,11 +131,13 @@ class HomePageState extends State<HomePage> {
 }
 
 class _TopicCard extends StatelessWidget {
+  final int index;
   final IconData icon;
   final String title;
   final VoidCallback onTap;
 
   const _TopicCard({
+    required this.index,
     required this.icon,
     required this.title,
     required this.onTap,
@@ -128,31 +145,90 @@ class _TopicCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 550),
+      curve: Curves.easeOutCubic,
+      tween: Tween(begin: 0, end: 1),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Transform.translate(
+            offset: Offset(0, (1 - value) * 20),
+            child: child,
+          ),
+        );
+      },
+      child: _InteractiveTopicCard(icon: icon, title: title, onTap: onTap),
+      onEnd: () {},
+    );
+  }
+}
+
+class _InteractiveTopicCard extends StatefulWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  const _InteractiveTopicCard({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  State<_InteractiveTopicCard> createState() => _InteractiveTopicCardState();
+}
+
+class _InteractiveTopicCardState extends State<_InteractiveTopicCard> {
+  bool _pressed = false;
+
+  void _setPressed(bool value) {
+    if (_pressed == value) return;
+    setState(() => _pressed = value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: onTap,
-      child: Container(
+      onTapDown: (_) => _setPressed(true),
+      onTapCancel: () => _setPressed(false),
+      onTapUp: (_) => _setPressed(false),
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
+        curve: Curves.easeOut,
         width: 160,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.grey[100],
+          color: _pressed ? scheme.primaryContainer : scheme.surface,
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              blurRadius: 6,
-              offset: Offset(0, 2),
+              color: scheme.shadow.withAlpha((0.14 * 255).round()),
+              blurRadius: _pressed ? 3 : 9,
+              offset: Offset(0, _pressed ? 1 : 4),
             ),
           ],
         ),
+        transform: Matrix4.identity()..scale(_pressed ? 0.98 : 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 36, color: Colors.black87),
+            AnimatedScale(
+              duration: const Duration(milliseconds: 160),
+              scale: _pressed ? 0.92 : 1,
+              child: Icon(widget.icon, size: 36, color: scheme.primary),
+            ),
             const SizedBox(height: 12),
             Text(
-              title,
+              widget.title,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: _pressed ? scheme.onPrimaryContainer : scheme.onSurface,
+              ),
             ),
           ],
         ),

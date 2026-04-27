@@ -1,0 +1,147 @@
+{
+  "@@locale": "sv",
+
+  "appTitle": "FlashLearn",
+  "homeTitle": "Flash Learn",
+  "signOut": "Logga ut",
+  "language": "Språk",
+  "english": "Engelska",
+  "bulgarian": "Bulgariska",
+  "swedish": "Svenska",
+  "settingsTitle": "Inställningar",
+  "settingsAppearance": "Utseende",
+  "settingsLanguage": "Språk",
+  "settingsAccount": "Konto",
+  "settingsSignedInAs": "Inloggad som",
+  "settingsAbout": "Om appen",
+  "settingsAboutDescription": "Lär dig Linux-grunder, terminalkommandon och praktiska arbetsflöden på ett ställe.",
+  "settingsHeroSubtitle": "Anpassa din lärmiljö med rena kontroller och fokuserade kontoalternativ.",
+  "settingsMadeBy": "Skapad av",
+  "settingsGithub": "GitHub",
+  "settingsFooterCredit": "Byggd med omsorg av nikichashadow · github.com/nikichashadow-code",
+
+  "navHome": "Hem",
+  "navSsh": "SSH",
+  "navTerminal": "Terminal",
+
+  "exploreTopics": "Utforska ämnen",
+  "topicHistoryOfLinux": "Linux historia",
+  "topicLinuxOsBasics": "Grunder i Linux OS",
+  "topicTerminalCommands": "Terminalkommandon",
+  "topicDistrosEcosystem": "Distributioner och ekosystem",
+  "searchCommandsHint": "Sök kommandon...",
+  "noCommandsFound": "Inga kommandon hittades",
+  "errorWithDetails": "Fel: {details}",
+  "@errorWithDetails": {
+    "placeholders": {
+      "details": {}
+    }
+  },
+
+  "welcomeTitle": "Välkommen till Linux Learn!",
+  "welcomeSubtitle": "Upptäck Linux värld: dess historia, kommandon och mer. Börja din resa mot att bemästra terminalen!",
+  "welcomeWhatYouWillLearn": "Det här kommer du att lära dig:",
+  "welcomeTopicHistory": "Historia",
+  "welcomeTopicBasics": "Grunder",
+  "welcomeTopicTerminal": "Terminal",
+  "welcomeTopicDistros": "Distributioner",
+  "getStarted": "Kom igång",
+
+  "authBrand": "Flash",
+  "welcomeBack": "Välkommen tillbaka",
+  "signUp": "Registrera dig",
+  "loginToContinue": "Logga in för att fortsätta",
+  "createAccountToContinue": "Skapa ditt konto för att fortsätta",
+  "email": "E-post",
+  "password": "Lösenord",
+  "rememberMe": "Kom ihåg mig",
+  "forgotPassword": "Glömt lösenord?",
+  "login": "Logga in",
+  "dontHaveAccount": "Har du inget konto? ",
+  "alreadyHaveAccount": "Har du redan ett konto? ",
+  "signUpLink": "Registrera dig",
+  "logInLink": "Logga in",
+  "loginFailed": "Inloggningen misslyckades.",
+  "signupFailed": "Registreringen misslyckades.",
+  "signUpSuccessCheckEmail": "Registreringen lyckades! Kontrollera din e-post för att bekräfta.",
+  "enterEmailAddress": "Ange din e-postadress",
+  "passwordResetLinkSent": "Länk för lösenordsåterställning skickad till din e-post",
+  "errorPrefix": "Fel: {error}",
+  "@errorPrefix": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+
+  "linuxHistoryTitle": "Linux historia",
+
+  "linuxBasicsTitle": "Grunder i Linux OS",
+
+  "distrosEcosystemTitle": "Distributioner och ekosystem",
+  "couldNotLaunchUrl": "Kunde inte öppna {url}",
+  "@couldNotLaunchUrl": {
+    "placeholders": {
+      "url": {}
+    }
+  },
+  "noCategoriesFound": "Inga kategorier hittades.",
+  "noTopicsFound": "Inga ämnen hittades.",
+  "noExamplesFound": "Inga exempel hittades.",
+
+  "terminalSimulatorTitle": "Terminalsimulator",
+  "typeCommandHint": "skriv kommando",
+
+  "createNewSetTitle": "Skapa nytt set",
+  "frontQuestion": "Framsida (Fråga)",
+  "backAnswer": "Baksida (Svar)",
+  "saveSet": "Spara set",
+
+  "flashcardProgress": "{current} av {total}",
+  "@flashcardProgress": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "know": "Kan",
+  "dontKnow": "Kan inte",
+
+  "sshClientTitle": "SSH-klient",
+  "connectionSaved": "Anslutningen sparades",
+  "connectedSuccessfully": "Ansluten",
+  "enterPassword": "Ange lösenord",
+  "passwordForUserAtHost": "Lösenord för {user}@{host}:",
+  "@passwordForUserAtHost": {
+    "placeholders": {
+      "user": {},
+      "host": {}
+    }
+  },
+  "cancel": "Avbryt",
+  "connect": "Anslut",
+  "passwordCannotBeEmpty": "Lösenord får inte vara tomt",
+  "notConnectedToAnyServer": "Inte ansluten till någon server",
+  "noOutput": "(ingen utdata)",
+  "disconnected": "Frånkopplad",
+  "connectedStatus": "● Ansluten",
+  "noSavedConnections": "Inga sparade anslutningar\nSkapa en ny för att komma igång",
+  "connectAction": "Anslut",
+  "deleteAction": "Ta bort",
+  "deleteConnectionTitle": "Ta bort anslutning",
+  "areYouSure": "Är du säker?",
+  "newConnection": "Ny anslutning",
+  "disconnect": "Koppla från",
+  "unknown": "Okänd",
+  "newSshConnection": "Ny SSH-anslutning",
+  "connectionName": "Anslutningsnamn",
+  "connectionNameHint": "t.ex. Min server",
+  "hostIpAddress": "Värd/IP-adress",
+  "hostIpHint": "example.com eller 1.2.3.4",
+  "port": "Port",
+  "username": "Användarnamn",
+  "usernameHint": "t.ex. root eller ubuntu",
+  "sshPasswordHint": "Ange ditt SSH-lösenord",
+  "savePassword": "Spara lösenord",
+  "savePasswordSubtitle": "Osäkert - endast på betrodda enheter",
+  "fillAllFields": "Fyll i alla fält"
+}

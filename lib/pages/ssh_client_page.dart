@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../models/ssh_connection.dart';
 import '../services/ssh_service.dart';
+import '../l10n/l10n.dart';
 
 class SSHClientPage extends StatefulWidget {
   const SSHClientPage({super.key});
@@ -61,7 +62,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Connection saved')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.connectionSaved)));
       }
     } catch (e) {
       _showError('Error saving connection: $e');
@@ -100,7 +101,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Connected successfully')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.connectedSuccessfully)));
       }
     } catch (e) {
       _showError('Connection failed: $e');
@@ -114,18 +115,23 @@ class _SSHClientPageState extends State<SSHClientPage> {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: const Text('Enter Password'),
+            title: Text(context.l10n.enterPassword),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Password for ${connection.username}@${connection.host}:'),
+                Text(
+                  context.l10n.passwordForUserAtHost(
+                    connection.username,
+                    connection.host,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: context.l10n.password,
+                    border: const OutlineInputBorder(),
                   ),
                   autofocus: true,
                 ),
@@ -134,17 +140,17 @@ class _SSHClientPageState extends State<SSHClientPage> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel'),
+                child: Text(context.l10n.cancel),
               ),
               ElevatedButton(
                 onPressed: () {
                   if (passwordController.text.isEmpty) {
-                    _showError('Password cannot be empty');
+                    _showError(context.l10n.passwordCannotBeEmpty);
                     return;
                   }
                   Navigator.pop(context, passwordController.text);
                 },
-                child: const Text('Connect'),
+                child: Text(context.l10n.connect),
               ),
             ],
           ),
@@ -153,7 +159,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
 
   Future<void> _executeCommand(String command) async {
     if (!_isConnected || _currentConnection == null) {
-      _showError('Not connected to any server');
+      _showError(context.l10n.notConnectedToAnyServer);
       return;
     }
 
@@ -175,7 +181,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
 
       setState(() {
         if (result.isEmpty) {
-          _output.add('(no output)');
+          _output.add(context.l10n.noOutput);
         } else {
           _output.addAll(result.split('\n').where((line) => line.isNotEmpty));
         }
@@ -195,7 +201,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
     setState(() {
       _isConnected = false;
       _currentConnection = null;
-      _output.add('\n✗ Disconnected');
+      _output.add('\n✗ ${context.l10n.disconnected}');
     });
   }
 
@@ -209,7 +215,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SSH Client'),
+        title: Text(context.l10n.sshClientTitle),
         backgroundColor: Colors.black87,
         foregroundColor: Colors.white,
         actions: [
@@ -237,7 +243,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
               _savedConnections.isEmpty
                   ? Center(
                     child: Text(
-                      'No saved connections\nCreate a new one to get started',
+                      context.l10n.noSavedConnections,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey[600]),
                     ),
@@ -259,11 +265,11 @@ class _SSHClientPageState extends State<SSHClientPage> {
                             itemBuilder:
                                 (context) => [
                                   PopupMenuItem(
-                                    child: const Text('Connect'),
+                                    child: Text(context.l10n.connectAction),
                                     onTap: () => _connect(conn),
                                   ),
                                   PopupMenuItem(
-                                    child: const Text('Delete'),
+                                    child: Text(context.l10n.deleteAction),
                                     onTap: () => _deleteConnection(conn.id),
                                   ),
                                 ],
@@ -280,7 +286,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
             width: double.infinity,
             child: ElevatedButton.icon(
               icon: const Icon(Icons.add),
-              label: const Text('New Connection'),
+              label: Text(context.l10n.newConnection),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black87,
                 foregroundColor: Colors.white,
@@ -313,7 +319,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
               ),
               ElevatedButton.icon(
                 icon: const Icon(Icons.logout, size: 16),
-                label: const Text('Disconnect'),
+                label: Text(context.l10n.disconnect),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red[700],
                   foregroundColor: Colors.white,
@@ -378,7 +384,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
                   ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'type command',
+                    hintText: context.l10n.typeCommandHint,
                     hintStyle: const TextStyle(
                       color: Color(0xFF9D8B6F),
                       fontFamily: 'Courier New',
@@ -409,46 +415,46 @@ class _SSHClientPageState extends State<SSHClientPage> {
           (context) => StatefulBuilder(
             builder:
                 (context, setState) => AlertDialog(
-                  title: const Text('New SSH Connection'),
+                  title: Text(context.l10n.newSshConnection),
                   content: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         TextField(
                           controller: nameController,
-                          decoration: const InputDecoration(
-                            labelText: 'Connection Name',
-                            hintText: 'e.g., My Server',
+                          decoration: InputDecoration(
+                            labelText: context.l10n.connectionName,
+                            hintText: context.l10n.connectionNameHint,
                           ),
                         ),
                         const SizedBox(height: 12),
                         TextField(
                           controller: hostController,
-                          decoration: const InputDecoration(
-                            labelText: 'Host/IP Address',
-                            hintText: 'example.com or 1.2.3.4',
+                          decoration: InputDecoration(
+                            labelText: context.l10n.hostIpAddress,
+                            hintText: context.l10n.hostIpHint,
                           ),
                         ),
                         const SizedBox(height: 12),
                         TextField(
                           controller: portController,
-                          decoration: const InputDecoration(labelText: 'Port'),
+                          decoration: InputDecoration(labelText: context.l10n.port),
                           keyboardType: TextInputType.number,
                         ),
                         const SizedBox(height: 12),
                         TextField(
                           controller: usernameController,
-                          decoration: const InputDecoration(
-                            labelText: 'Username',
-                            hintText: 'e.g., root or ubuntu',
+                          decoration: InputDecoration(
+                            labelText: context.l10n.username,
+                            hintText: context.l10n.usernameHint,
                           ),
                         ),
                         const SizedBox(height: 12),
                         TextField(
                           controller: passwordController,
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                            hintText: 'Enter your SSH password',
+                          decoration: InputDecoration(
+                            labelText: context.l10n.password,
+                            hintText: context.l10n.sshPasswordHint,
                           ),
                           obscureText: true,
                         ),
@@ -458,10 +464,8 @@ class _SSHClientPageState extends State<SSHClientPage> {
                           onChanged:
                               (val) =>
                                   setState(() => savePassword = val ?? false),
-                          title: const Text('Save Password'),
-                          subtitle: const Text(
-                            'Insecure - only on trusted devices',
-                          ),
+                          title: Text(context.l10n.savePassword),
+                          subtitle: Text(context.l10n.savePasswordSubtitle),
                         ),
                       ],
                     ),
@@ -469,7 +473,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancel'),
+                      child: Text(context.l10n.cancel),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -478,7 +482,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
                             usernameController.text.isEmpty ||
                             passwordController.text.isEmpty) {
                           _showError(
-                            'Please fill all required fields including password',
+                            context.l10n.fillAllFields,
                           );
                           return;
                         }
@@ -496,7 +500,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
                         _saveConnection(connection);
                         Navigator.pop(context);
                       },
-                      child: const Text('Connect'),
+                      child: Text(context.l10n.connect),
                     ),
                   ],
                 ),
@@ -509,12 +513,12 @@ class _SSHClientPageState extends State<SSHClientPage> {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: const Text('Delete Connection'),
-            content: const Text('Are you sure?'),
+            title: Text(context.l10n.deleteConnectionTitle),
+            content: Text(context.l10n.areYouSure),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel'),
+                child: Text(context.l10n.cancel),
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -534,7 +538,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                child: const Text('Delete'),
+                child: Text(context.l10n.deleteAction),
               ),
             ],
           ),

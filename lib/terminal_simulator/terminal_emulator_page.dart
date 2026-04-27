@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'terminal_commands.dart';
 import 'terminal_output.dart';
 import 'terminal_input.dart';
+import '../l10n/l10n.dart';
 
 class TerminalEmulatorPage extends StatefulWidget {
   const TerminalEmulatorPage({super.key});
@@ -33,9 +34,9 @@ class _TerminalEmulatorPageState extends State<TerminalEmulatorPage> {
     return Scaffold(
       backgroundColor: const Color(0xFF1A1410),
       appBar: AppBar(
-        title: const Text(
-          'Terminal Simulator',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          context.l10n.terminalSimulatorTitle,
+          style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color(0xFF2D2420),
         elevation: 0,

@@ -1,5 +1,6 @@
 // filepath: lib/terminal_simulator/terminal_input.dart
 import 'package:flutter/material.dart';
+import '../l10n/l10n.dart';
 
 class TerminalInput extends StatelessWidget {
   final TextEditingController controller;
@@ -42,15 +43,15 @@ class TerminalInput extends StatelessWidget {
               ),
               minLines: 1,
               maxLines: 1,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: 12.0,
                   horizontal: 8.0,
                 ),
-                hintText: 'type command',
-                hintStyle: TextStyle(
+                hintText: context.l10n.typeCommandHint,
+                hintStyle: const TextStyle(
                   color: Color(0xFF9D8B6F),
                   fontFamily: 'Courier New',
                   fontSize: 18,

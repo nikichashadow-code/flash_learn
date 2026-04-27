@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/supabase_service.dart';
 import '../models/ecosystem.dart';
+import '../l10n/l10n.dart';
 
 class DistributionsAndEcosystemPage extends StatefulWidget {
   const DistributionsAndEcosystemPage({super.key});
@@ -28,7 +29,7 @@ class _DistributionsAndEcosystemPageState
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Could not launch $url')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.couldNotLaunchUrl(url))));
       }
     }
   }
@@ -37,7 +38,7 @@ class _DistributionsAndEcosystemPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Distributions & Ecosystem'),
+        title: Text(context.l10n.distrosEcosystemTitle),
         backgroundColor: Colors.black87,
         foregroundColor: Colors.white,
       ),
@@ -53,7 +54,7 @@ class _DistributionsAndEcosystemPageState
           }
           final categories = snapshot.data;
           if (categories == null || categories.isEmpty) {
-            return const Center(child: Text('No categories found.'));
+            return Center(child: Text(context.l10n.noCategoriesFound));
           }
           return ListView.builder(
             padding: const EdgeInsets.all(20),
@@ -76,7 +77,7 @@ class _DistributionsAndEcosystemPageState
                         builder: (context) => ListView(
                           padding: const EdgeInsets.all(16),
                           children: topics.isEmpty
-                              ? [const Text('No topics found.')]
+                              ? [Text(context.l10n.noTopicsFound)]
                               : topics
                                   .map(
                                     (topic) => ListTile(
@@ -95,9 +96,7 @@ class _DistributionsAndEcosystemPageState
                                                   const EdgeInsets.all(16),
                                               children: examples.isEmpty
                                                   ? [
-                                                    const Text(
-                                                      'No examples found.',
-                                                    ),
+                                                    Text(context.l10n.noExamplesFound),
                                                   ]
                                                   : examples
                                                       .map(

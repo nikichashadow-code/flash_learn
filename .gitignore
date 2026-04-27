@@ -46,3 +46,10 @@ app.*.map.json
 
 .env
 .env.local
+
+# If you keep env as a Flutter asset, ignore it too
+assets/.env
+
+# Gradle & iOS ephemeral build artifacts (generated)
+android/.gradle/
+ios/Flutter/ephemeral/

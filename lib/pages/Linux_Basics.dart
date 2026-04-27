@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../l10n/l10n.dart';
 
 class LinuxBasicsPage extends StatelessWidget {
   const LinuxBasicsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final sections = [
       _Section(
         icon: FontAwesomeIcons.linux,
@@ -109,11 +111,11 @@ Linux uses a hierarchical file system starting at the root /. Common directories
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Linux OS Basics'),
+        title: Text(context.l10n.linuxBasicsTitle),
         backgroundColor: Colors.black87,
         foregroundColor: Colors.white,
       ),
-      backgroundColor: Colors.grey[100],
+      backgroundColor: scheme.surface,
       body: ListView.separated(
         padding: const EdgeInsets.all(20),
         itemCount: sections.length,
@@ -137,10 +139,11 @@ class _SectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-      color: Colors.white,
+      color: scheme.surface,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -148,13 +151,14 @@ class _SectionCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(section.icon, color: Colors.green, size: 28),
+                Icon(section.icon, color: scheme.primary, size: 28),
                 const SizedBox(width: 12),
                 Text(
                   section.title,
-                  style: const TextStyle(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
+                    color: scheme.onSurface,
                   ),
                 ),
               ],
@@ -162,7 +166,11 @@ class _SectionCard extends StatelessWidget {
             const SizedBox(height: 14),
             Text(
               section.content.trim(),
-              style: const TextStyle(fontSize: 16, color: Colors.black87, height: 1.5),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontSize: 16,
+                height: 1.5,
+                color: scheme.onSurfaceVariant,
+              ),
             ),
           ],
         ),

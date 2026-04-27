@@ -1,0 +1,147 @@
+{
+  "@@locale": "bg",
+
+  "appTitle": "FlashLearn",
+  "homeTitle": "Flash Learn",
+  "signOut": "Изход",
+  "language": "Език",
+  "english": "Английски",
+  "bulgarian": "Български",
+  "swedish": "Шведски",
+  "settingsTitle": "Настройки",
+  "settingsAppearance": "Външен вид",
+  "settingsLanguage": "Език",
+  "settingsAccount": "Акаунт",
+  "settingsSignedInAs": "Влязъл като",
+  "settingsAbout": "За приложението",
+  "settingsAboutDescription": "Учи основи на Linux, терминални команди и практически умения на едно място.",
+  "settingsHeroSubtitle": "Персонализирай учебната среда с изчистени контроли и фокусирани опции за акаунт.",
+  "settingsMadeBy": "Създадено от",
+  "settingsGithub": "GitHub",
+  "settingsFooterCredit": "Създадено с внимание от nikichashadow · github.com/nikichashadow-code",
+
+  "navHome": "Начало",
+  "navSsh": "SSH",
+  "navTerminal": "Терминал",
+
+  "exploreTopics": "Разгледай теми",
+  "topicHistoryOfLinux": "История на Linux",
+  "topicLinuxOsBasics": "Основи на Linux",
+  "topicTerminalCommands": "Команди в терминала",
+  "topicDistrosEcosystem": "Дистрибуции и екосистема",
+  "searchCommandsHint": "Търси команди...",
+  "noCommandsFound": "Няма намерени команди",
+  "errorWithDetails": "Грешка: {details}",
+  "@errorWithDetails": {
+    "placeholders": {
+      "details": {}
+    }
+  },
+
+  "welcomeTitle": "Добре дошли в Linux Learn!",
+  "welcomeSubtitle": "Открий света на Linux: история, команди и още. Започни пътя си към овладяване на терминала!",
+  "welcomeWhatYouWillLearn": "Какво ще научиш:",
+  "welcomeTopicHistory": "История",
+  "welcomeTopicBasics": "Основи",
+  "welcomeTopicTerminal": "Терминал",
+  "welcomeTopicDistros": "Дистрибуции",
+  "getStarted": "Започни",
+
+  "authBrand": "Flash",
+  "welcomeBack": "Добре дошъл отново",
+  "signUp": "Регистрация",
+  "loginToContinue": "Влез, за да продължиш",
+  "createAccountToContinue": "Създай акаунт, за да продължиш",
+  "email": "Имейл",
+  "password": "Парола",
+  "rememberMe": "Запомни ме",
+  "forgotPassword": "Забравена парола?",
+  "login": "Вход",
+  "dontHaveAccount": "Нямаш акаунт? ",
+  "alreadyHaveAccount": "Имаш акаунт? ",
+  "signUpLink": "Регистрация",
+  "logInLink": "Вход",
+  "loginFailed": "Неуспешен вход.",
+  "signupFailed": "Неуспешна регистрация.",
+  "signUpSuccessCheckEmail": "Успешна регистрация! Провери имейла си за потвърждение.",
+  "enterEmailAddress": "Моля, въведи имейл адрес",
+  "passwordResetLinkSent": "Линк за смяна на парола е изпратен на имейла ти",
+  "errorPrefix": "Грешка: {error}",
+  "@errorPrefix": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+
+  "linuxHistoryTitle": "История на Linux",
+
+  "linuxBasicsTitle": "Основи на Linux",
+
+  "distrosEcosystemTitle": "Дистрибуции и екосистема",
+  "couldNotLaunchUrl": "Не може да се отвори {url}",
+  "@couldNotLaunchUrl": {
+    "placeholders": {
+      "url": {}
+    }
+  },
+  "noCategoriesFound": "Няма намерени категории.",
+  "noTopicsFound": "Няма намерени теми.",
+  "noExamplesFound": "Няма намерени примери.",
+
+  "terminalSimulatorTitle": "Симулатор на терминал",
+  "typeCommandHint": "въведи команда",
+
+  "createNewSetTitle": "Създай нов комплект",
+  "frontQuestion": "Лице (Въпрос)",
+  "backAnswer": "Гръб (Отговор)",
+  "saveSet": "Запази комплекта",
+
+  "flashcardProgress": "{current} от {total}",
+  "@flashcardProgress": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "know": "Знам",
+  "dontKnow": "Не знам",
+
+  "sshClientTitle": "SSH клиент",
+  "connectionSaved": "Връзката е запазена",
+  "connectedSuccessfully": "Успешно свързване",
+  "enterPassword": "Въведи парола",
+  "passwordForUserAtHost": "Парола за {user}@{host}:",
+  "@passwordForUserAtHost": {
+    "placeholders": {
+      "user": {},
+      "host": {}
+    }
+  },
+  "cancel": "Отказ",
+  "connect": "Свържи",
+  "passwordCannotBeEmpty": "Паролата не може да е празна",
+  "notConnectedToAnyServer": "Няма активна връзка със сървър",
+  "noOutput": "(няма изход)",
+  "disconnected": "Прекъснато",
+  "connectedStatus": "● Свързан",
+  "noSavedConnections": "Няма запазени връзки\nСъздай нова, за да започнеш",
+  "connectAction": "Свържи",
+  "deleteAction": "Изтрий",
+  "deleteConnectionTitle": "Изтриване на връзка",
+  "areYouSure": "Сигурен ли си?",
+  "newConnection": "Нова връзка",
+  "disconnect": "Прекъсни",
+  "unknown": "Неизвестно",
+  "newSshConnection": "Нова SSH връзка",
+  "connectionName": "Име на връзката",
+  "connectionNameHint": "напр. Моят сървър",
+  "hostIpAddress": "Хост/IP адрес",
+  "hostIpHint": "example.com или 1.2.3.4",
+  "port": "Порт",
+  "username": "Потребител",
+  "usernameHint": "напр. root или ubuntu",
+  "sshPasswordHint": "Въведи SSH паролата си",
+  "savePassword": "Запази паролата",
+  "savePasswordSubtitle": "Несигурно — само на доверени устройства",
+  "fillAllFields": "Моля, попълни всички полета"
+}

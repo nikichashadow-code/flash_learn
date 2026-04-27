@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../l10n/l10n.dart';
 
 class FlashcardViewPage extends StatefulWidget {
   final String setTitle;
@@ -93,7 +94,9 @@ class _FlashcardViewPageState extends State<FlashcardViewPage> {
               },
             ),
             const SizedBox(height: 24),
-            Text('${_currentIndex + 1} of ${widget.cards.length}'),
+            Text(
+              context.l10n.flashcardProgress(_currentIndex + 1, widget.cards.length),
+            ),
             const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -104,7 +107,7 @@ class _FlashcardViewPageState extends State<FlashcardViewPage> {
                     backgroundColor: Colors.green[700],
                     minimumSize: const Size(120, 48),
                   ),
-                  child: const Text('Know'),
+                  child: Text(context.l10n.know),
                 ),
                 ElevatedButton(
                   onPressed: _nextCard,
@@ -112,7 +115,7 @@ class _FlashcardViewPageState extends State<FlashcardViewPage> {
                     backgroundColor: Colors.red[400],
                     minimumSize: const Size(120, 48),
                   ),
-                  child: const Text("Don't Know"),
+                  child: Text(context.l10n.dontKnow),
                 ),
               ],
             ),

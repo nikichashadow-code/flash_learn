@@ -1,0 +1,147 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "FlashLearn",
+  "homeTitle": "Flash Learn",
+  "signOut": "Sign Out",
+  "language": "Language",
+  "english": "English",
+  "bulgarian": "Bulgarian",
+  "swedish": "Swedish",
+  "settingsTitle": "Settings",
+  "settingsAppearance": "Appearance",
+  "settingsLanguage": "Language",
+  "settingsAccount": "Account",
+  "settingsSignedInAs": "Signed in as",
+  "settingsAbout": "About",
+  "settingsAboutDescription": "Learn Linux basics, terminal commands, and practical workflows in one place.",
+  "settingsHeroSubtitle": "Personalize your learning environment with clean controls and focused account options.",
+  "settingsMadeBy": "Made by",
+  "settingsGithub": "GitHub",
+  "settingsFooterCredit": "Built with care by nikichashadow · github.com/nikichashadow-code",
+
+  "navHome": "Home",
+  "navSsh": "SSH",
+  "navTerminal": "Terminal",
+
+  "exploreTopics": "Explore Topics",
+  "topicHistoryOfLinux": "History of Linux",
+  "topicLinuxOsBasics": "Linux OS Basics",
+  "topicTerminalCommands": "Terminal Commands",
+  "topicDistrosEcosystem": "Distributions & Ecosystem",
+  "searchCommandsHint": "Search commands...",
+  "noCommandsFound": "No commands found",
+  "errorWithDetails": "Error: {details}",
+  "@errorWithDetails": {
+    "placeholders": {
+      "details": {}
+    }
+  },
+
+  "welcomeTitle": "Welcome to Linux Learn!",
+  "welcomeSubtitle": "Discover the world of Linux: its history, commands, and more. Start your journey to mastering the terminal!",
+  "welcomeWhatYouWillLearn": "What you will learn:",
+  "welcomeTopicHistory": "History",
+  "welcomeTopicBasics": "Basics",
+  "welcomeTopicTerminal": "Terminal",
+  "welcomeTopicDistros": "Distros",
+  "getStarted": "Get Started",
+
+  "authBrand": "Flash",
+  "welcomeBack": "Welcome Back",
+  "signUp": "Sign Up",
+  "loginToContinue": "Login to continue",
+  "createAccountToContinue": "Create your account to continue",
+  "email": "Email",
+  "password": "Password",
+  "rememberMe": "Remember Me",
+  "forgotPassword": "Forgot Password?",
+  "login": "Login",
+  "dontHaveAccount": "Don't have an account? ",
+  "alreadyHaveAccount": "Already have an account? ",
+  "signUpLink": "Sign up",
+  "logInLink": "Log in",
+  "loginFailed": "Login failed.",
+  "signupFailed": "Signup failed.",
+  "signUpSuccessCheckEmail": "Sign up successful! Check your email to confirm.",
+  "enterEmailAddress": "Please enter your email address",
+  "passwordResetLinkSent": "Password reset link sent to your email",
+  "errorPrefix": "Error: {error}",
+  "@errorPrefix": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+
+  "linuxHistoryTitle": "History of Linux",
+
+  "linuxBasicsTitle": "Linux OS Basics",
+
+  "distrosEcosystemTitle": "Distributions & Ecosystem",
+  "couldNotLaunchUrl": "Could not launch {url}",
+  "@couldNotLaunchUrl": {
+    "placeholders": {
+      "url": {}
+    }
+  },
+  "noCategoriesFound": "No categories found.",
+  "noTopicsFound": "No topics found.",
+  "noExamplesFound": "No examples found.",
+
+  "terminalSimulatorTitle": "Terminal Simulator",
+  "typeCommandHint": "type command",
+
+  "createNewSetTitle": "Create New Set",
+  "frontQuestion": "Front (Question)",
+  "backAnswer": "Back (Answer)",
+  "saveSet": "Save Set",
+
+  "flashcardProgress": "{current} of {total}",
+  "@flashcardProgress": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "know": "Know",
+  "dontKnow": "Don't Know",
+
+  "sshClientTitle": "SSH Client",
+  "connectionSaved": "Connection saved",
+  "connectedSuccessfully": "Connected successfully",
+  "enterPassword": "Enter Password",
+  "passwordForUserAtHost": "Password for {user}@{host}:",
+  "@passwordForUserAtHost": {
+    "placeholders": {
+      "user": {},
+      "host": {}
+    }
+  },
+  "cancel": "Cancel",
+  "connect": "Connect",
+  "passwordCannotBeEmpty": "Password cannot be empty",
+  "notConnectedToAnyServer": "Not connected to any server",
+  "noOutput": "(no output)",
+  "disconnected": "Disconnected",
+  "connectedStatus": "● Connected",
+  "noSavedConnections": "No saved connections\nCreate a new one to get started",
+  "connectAction": "Connect",
+  "deleteAction": "Delete",
+  "deleteConnectionTitle": "Delete Connection",
+  "areYouSure": "Are you sure?",
+  "newConnection": "New Connection",
+  "disconnect": "Disconnect",
+  "unknown": "Unknown",
+  "newSshConnection": "New SSH Connection",
+  "connectionName": "Connection Name",
+  "connectionNameHint": "e.g., My Server",
+  "hostIpAddress": "Host/IP Address",
+  "hostIpHint": "example.com or 1.2.3.4",
+  "port": "Port",
+  "username": "Username",
+  "usernameHint": "e.g., root or ubuntu",
+  "sshPasswordHint": "Enter your SSH password",
+  "savePassword": "Save Password",
+  "savePasswordSubtitle": "Insecure - only on trusted devices",
+  "fillAllFields": "Please fill in all fields"
+}

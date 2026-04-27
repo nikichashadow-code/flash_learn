@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../l10n/l10n.dart';
 
 class LinuxHistoryPage extends StatelessWidget {
   const LinuxHistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final events = [
       _LinuxHistoryEvent(
         year: "1983",
@@ -67,11 +69,11 @@ Linux powers smartphones, smart TVs, cars, embedded devices, and the world's fas
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('History of Linux'),
+        title: Text(context.l10n.linuxHistoryTitle),
         backgroundColor: Colors.black87,
         foregroundColor: Colors.white, // <-- Add this line
       ),
-      backgroundColor: Colors.grey[100],
+      backgroundColor: scheme.surface,
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         itemCount: events.length,
@@ -118,6 +120,7 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -129,15 +132,15 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
               child: Column(
                 children: [
                   if (!widget.isFirst)
-                    Container(height: 24, width: 2, color: Colors.green[300]),
+                    Container(height: 24, width: 2, color: scheme.primary.withAlpha((0.35 * 255).round())),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: scheme.primary,
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 3),
+                      border: Border.all(color: scheme.surface, width: 3),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.green.withAlpha((0.3 * 255).round()),
+                          color: scheme.primary.withAlpha((0.3 * 255).round()),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -151,7 +154,7 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
                     ),
                   ),
                   if (!widget.isLast)
-                    Container(height: 64, width: 2, color: Colors.green[300]),
+                    Container(height: 64, width: 2, color: scheme.primary.withAlpha((0.35 * 255).round())),
                 ],
               ),
             ),
@@ -188,7 +191,7 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
                     Text(
                       widget.event.year,
                       style: TextStyle(
-                        color: Colors.green[700],
+                        color: scheme.primary,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -197,9 +200,10 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
                     Expanded(
                       child: Text(
                         widget.event.title,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: scheme.onSurface,
                         ),
                       ),
                     ),
@@ -213,7 +217,11 @@ class _TimelineExpansionTileState extends State<_TimelineExpansionTile> {
                 children: [
                   Text(
                     widget.event.details,
-                    style: const TextStyle(fontSize: 16, color: Colors.black87),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: 16,
+                      height: 1.5,
+                      color: scheme.onSurfaceVariant,
+                    ),
                   ),
                 ],
               ),

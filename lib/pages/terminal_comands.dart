@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../models/command.dart';
 import '../services/supabase_service.dart';
+import '../l10n/l10n.dart';
+import 'terminal_quiz_page.dart';
 
 class TerminalCommandsPage extends StatefulWidget {
   const TerminalCommandsPage({super.key});
@@ -35,15 +37,29 @@ class _TerminalCommandsPageState extends State<TerminalCommandsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: scheme.surface,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 2,
+          backgroundColor: scheme.surface,
+          elevation: 0,
           automaticallyImplyLeading: true,
-          iconTheme: const IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: scheme.onSurface),
+          actions: [
+            IconButton(
+              tooltip: 'Quiz',
+              icon: Icon(Icons.quiz, color: scheme.onSurface),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const TerminalQuizPage(),
+                  ),
+                );
+              },
+            ),
+          ],
           title: Padding(
             padding: const EdgeInsets.only(
               top: 8.0,
@@ -51,13 +67,13 @@ class _TerminalCommandsPageState extends State<TerminalCommandsPage> {
             ), // Add right padding
             child: TextField(
               controller: _searchController,
-              style: const TextStyle(color: Colors.black),
+              style: TextStyle(color: scheme.onSurface),
               decoration: InputDecoration(
-                hintText: 'Search commands...',
-                hintStyle: const TextStyle(color: Colors.black54),
-                prefixIcon: const Icon(Icons.search, color: Colors.black54),
+                hintText: context.l10n.searchCommandsHint,
+                hintStyle: TextStyle(color: scheme.onSurfaceVariant),
+                prefixIcon: Icon(Icons.search, color: scheme.onSurfaceVariant),
                 filled: true,
-                fillColor: Colors.grey[300],
+                fillColor: scheme.surfaceContainerHighest,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -78,7 +94,11 @@ class _TerminalCommandsPageState extends State<TerminalCommandsPage> {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
+            return Center(
+              child: Text(
+                context.l10n.errorWithDetails(snapshot.error.toString()),
+              ),
+            );
           }
 
           final commands = snapshot.data ?? [];
@@ -106,7 +126,7 @@ class _TerminalCommandsPageState extends State<TerminalCommandsPage> {
                       .toList();
 
           if (filtered.isEmpty) {
-            return const Center(child: Text("No commands found"));
+            return Center(child: Text(context.l10n.noCommandsFound));
           }
 
           return ListView.builder(

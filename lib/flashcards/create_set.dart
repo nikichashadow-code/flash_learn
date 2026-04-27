@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../l10n/l10n.dart';
 
 class CreateSetPage extends StatefulWidget {
   const CreateSetPage({super.key});
@@ -39,7 +40,7 @@ class _CreateSetPageState extends State<CreateSetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create New Set')),
+      appBar: AppBar(title: Text(context.l10n.createNewSetTitle)),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -48,12 +49,12 @@ class _CreateSetPageState extends State<CreateSetPage> {
               Text(_error!, style: const TextStyle(color: Colors.red)),
             TextField(
               controller: _questionController,
-              decoration: const InputDecoration(labelText: 'Front (Question)'),
+              decoration: InputDecoration(labelText: context.l10n.frontQuestion),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: _answerController,
-              decoration: const InputDecoration(labelText: 'Back (Answer)'),
+              decoration: InputDecoration(labelText: context.l10n.backAnswer),
             ),
             const SizedBox(height: 32),
             SizedBox(
@@ -70,9 +71,9 @@ class _CreateSetPageState extends State<CreateSetPage> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text(
-                          'Save Set',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        child: Text(
+                          context.l10n.saveSet,
+                          style: const TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
             ),
