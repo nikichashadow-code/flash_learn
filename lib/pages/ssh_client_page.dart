@@ -13,7 +13,7 @@ class SSHClientPage extends StatefulWidget {
 }
 
 class _SSHClientPageState extends State<SSHClientPage> {
-  final SSHService _sshService = SSHService();
+  late final SSHService _sshService;
   final TextEditingController _commandController = TextEditingController();
   final List<String> _output = [];
   List<SSHConnection> _savedConnections = [];
@@ -23,7 +23,20 @@ class _SSHClientPageState extends State<SSHClientPage> {
   @override
   void initState() {
     super.initState();
+    _sshService = SSHService(onDisconnected: _handleConnectionLost);
     _loadSavedConnections();
+  }
+
+  void _handleConnectionLost(Object error) {
+    if (!mounted) return;
+    setState(() {
+      _isConnected = false;
+      _currentConnection = null;
+      _output.add('\n✗ ${context.l10n.disconnected}');
+    });
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(context.l10n.disconnected)));
   }
 
   Future<void> _loadSavedConnections() async {
@@ -99,9 +112,9 @@ class _SSHClientPageState extends State<SSHClientPage> {
       });
 
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(context.l10n.connectedSuccessfully)));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.connectedSuccessfully)),
+        );
       }
     } catch (e) {
       _showError('Connection failed: $e');
@@ -179,6 +192,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
     try {
       final result = await _sshService.executeCommand(command);
 
+      if (!mounted) return;
       setState(() {
         if (result.isEmpty) {
           _output.add(context.l10n.noOutput);
@@ -187,16 +201,18 @@ class _SSHClientPageState extends State<SSHClientPage> {
         }
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         _output.add('Error: $e');
       });
     } finally {
-      _commandController.clear();
+      if (mounted) _commandController.clear();
     }
   }
 
   Future<void> _disconnect() async {
     await _sshService.disconnect();
+    if (!mounted) return;
 
     setState(() {
       _isConnected = false;
@@ -224,7 +240,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
               padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: Text(
-                  '● Connected',
+                  context.l10n.connectedStatus,
                   style: TextStyle(color: Colors.green[400]),
                 ),
               ),
@@ -438,7 +454,9 @@ class _SSHClientPageState extends State<SSHClientPage> {
                         const SizedBox(height: 12),
                         TextField(
                           controller: portController,
-                          decoration: InputDecoration(labelText: context.l10n.port),
+                          decoration: InputDecoration(
+                            labelText: context.l10n.port,
+                          ),
                           keyboardType: TextInputType.number,
                         ),
                         const SizedBox(height: 12),
@@ -477,22 +495,24 @@ class _SSHClientPageState extends State<SSHClientPage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (nameController.text.isEmpty ||
-                            hostController.text.isEmpty ||
-                            usernameController.text.isEmpty ||
-                            passwordController.text.isEmpty) {
-                          _showError(
-                            context.l10n.fillAllFields,
-                          );
+                        final port = int.tryParse(portController.text.trim());
+                        if (nameController.text.trim().isEmpty ||
+                            hostController.text.trim().isEmpty ||
+                            usernameController.text.trim().isEmpty ||
+                            passwordController.text.isEmpty ||
+                            port == null ||
+                            port < 1 ||
+                            port > 65535) {
+                          _showError(context.l10n.fillAllFields);
                           return;
                         }
 
                         final connection = SSHConnection(
                           id: DateTime.now().millisecondsSinceEpoch.toString(),
-                          name: nameController.text,
-                          host: hostController.text,
-                          port: int.tryParse(portController.text) ?? 22,
-                          username: usernameController.text,
+                          name: nameController.text.trim(),
+                          host: hostController.text.trim(),
+                          port: port,
+                          username: usernameController.text.trim(),
                           password: passwordController.text,
                           savePassword: savePassword,
                         );
@@ -522,6 +542,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  final navigator = Navigator.of(context);
                   setState(() {
                     _savedConnections.removeWhere((c) => c.id == id);
                   });
@@ -534,7 +555,7 @@ class _SSHClientPageState extends State<SSHClientPage> {
                   await prefs.setStringList('ssh_connections', connectionsJson);
 
                   if (mounted) {
-                    Navigator.pop(context);
+                    navigator.pop();
                   }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.red),

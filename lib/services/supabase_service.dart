@@ -15,6 +15,31 @@ class SupabaseService {
     return data.map((json) => Command.fromJson(json)).toList();
   }
 
+  Future<List<Map<String, dynamic>>> fetchFlashcards() async {
+    final user = supabase.auth.currentUser;
+    if (user == null) return const [];
+
+    final data =
+        await supabase
+                .from('flashcards')
+                .select('id, question, answer')
+                .eq('user_id', user.id)
+            as List<dynamic>;
+
+    return data.map((json) => Map<String, dynamic>.from(json as Map)).toList();
+  }
+
+  Future<void> deleteFlashcard(dynamic id) async {
+    final user = supabase.auth.currentUser;
+    if (user == null) throw StateError('You must be signed in');
+
+    await supabase
+        .from('flashcards')
+        .delete()
+        .eq('id', id)
+        .eq('user_id', user.id);
+  }
+
   /// Adds a new command or updates flags if it already exists
   Future<void> addOrUpdateCommand(
     String name,

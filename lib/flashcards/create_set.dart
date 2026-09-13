@@ -10,12 +10,14 @@ class CreateSetPage extends StatefulWidget {
 }
 
 class _CreateSetPageState extends State<CreateSetPage> {
+  final _formKey = GlobalKey<FormState>();
   final _questionController = TextEditingController();
   final _answerController = TextEditingController();
   bool _loading = false;
   String? _error;
 
   Future<void> _saveSet() async {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
     setState(() {
       _loading = true;
       _error = null;
@@ -31,9 +33,9 @@ class _CreateSetPageState extends State<CreateSetPage> {
         Navigator.pop(context, true); // Return to home and refresh
       }
     } catch (e) {
-      setState(() => _error = e.toString());
+      if (mounted) setState(() => _error = e.toString());
     } finally {
-      setState(() => _loading = false);
+      if (mounted) setState(() => _loading = false);
     }
   }
 
@@ -41,20 +43,91 @@ class _CreateSetPageState extends State<CreateSetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.createNewSetTitle)),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
           children: [
+            Text(
+              context.l10n.createNewSetTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              context.l10n.createSetSubtitle,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 28),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: Colors.red)),
-            TextField(
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  _error!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+            TextFormField(
               controller: _questionController,
-              decoration: InputDecoration(labelText: context.l10n.frontQuestion),
+              maxLines: 3,
+              validator:
+                  (value) =>
+                      value == null || value.trim().isEmpty
+                          ? context.l10n.requiredField
+                          : null,
+              decoration: InputDecoration(
+                labelText: context.l10n.frontQuestion,
+                hintText: context.l10n.frontQuestionHint,
+                alignLabelWithHint: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 2,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 16),
-            TextField(
+            TextFormField(
               controller: _answerController,
-              decoration: InputDecoration(labelText: context.l10n.backAnswer),
+              maxLines: 5,
+              validator:
+                  (value) =>
+                      value == null || value.trim().isEmpty
+                          ? context.l10n.requiredField
+                          : null,
+              decoration: InputDecoration(
+                labelText: context.l10n.backAnswer,
+                hintText: context.l10n.backAnswerHint,
+                alignLabelWithHint: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 2,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 32),
             SizedBox(
@@ -63,18 +136,10 @@ class _CreateSetPageState extends State<CreateSetPage> {
               child:
                   _loading
                       ? const Center(child: CircularProgressIndicator())
-                      : ElevatedButton(
+                      : FilledButton.icon(
                         onPressed: _saveSet,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF388E3C),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          context.l10n.saveSet,
-                          style: const TextStyle(fontSize: 18, color: Colors.white),
-                        ),
+                        icon: const Icon(Icons.save_outlined),
+                        label: Text(context.l10n.saveSet),
                       ),
             ),
           ],

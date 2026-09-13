@@ -234,6 +234,54 @@ abstract class AppLocalizations {
   /// **'Terminal'**
   String get navTerminal;
 
+  /// No description provided for @flashcardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Flashcards'**
+  String get flashcardsTitle;
+
+  /// No description provided for @requiredField.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get requiredField;
+
+  /// No description provided for @createSetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a prompt and answer to add a card to your study library.'**
+  String get createSetSubtitle;
+
+  /// No description provided for @frontQuestionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to remember?'**
+  String get frontQuestionHint;
+
+  /// No description provided for @backAnswerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write the explanation or answer'**
+  String get backAnswerHint;
+
+  /// No description provided for @noFlashcards.
+  ///
+  /// In en, this message translates to:
+  /// **'No flashcards yet'**
+  String get noFlashcards;
+
+  /// No description provided for @createFirstFlashcard.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first flashcard to start studying.'**
+  String get createFirstFlashcard;
+
+  /// No description provided for @studyFlashcards.
+  ///
+  /// In en, this message translates to:
+  /// **'Study flashcards'**
+  String get studyFlashcards;
+
   /// No description provided for @exploreTopics.
   ///
   /// In en, this message translates to:
@@ -641,6 +689,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Don\'t Know'**
   String get dontKnow;
+
+  /// No description provided for @flashcardComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Study session complete'**
+  String get flashcardComplete;
+
+  /// No description provided for @flashcardScore.
+  ///
+  /// In en, this message translates to:
+  /// **'You knew {known} of {total} cards.'**
+  String flashcardScore(Object known, Object total);
+
+  /// No description provided for @restartStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Study again'**
+  String get restartStudy;
 
   /// No description provided for @sshClientTitle.
   ///

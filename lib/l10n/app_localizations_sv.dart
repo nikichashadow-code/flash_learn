@@ -78,6 +78,32 @@ class AppLocalizationsSv extends AppLocalizations {
   String get navTerminal => 'Terminal';
 
   @override
+  String get flashcardsTitle => 'Flashcards';
+
+  @override
+  String get requiredField => 'Fältet är obligatoriskt';
+
+  @override
+  String get createSetSubtitle =>
+      'Skriv en fråga och ett svar för att lägga till ett kort i ditt studiebibliotek.';
+
+  @override
+  String get frontQuestionHint => 'Vad vill du komma ihåg?';
+
+  @override
+  String get backAnswerHint => 'Skriv förklaringen eller svaret';
+
+  @override
+  String get noFlashcards => 'Inga flashcards ännu';
+
+  @override
+  String get createFirstFlashcard =>
+      'Skapa ditt första flashcard för att börja studera.';
+
+  @override
+  String get studyFlashcards => 'Studera flashcards';
+
+  @override
   String get exploreTopics => 'Utforska ämnen';
 
   @override
@@ -299,6 +325,17 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get dontKnow => 'Kan inte';
+
+  @override
+  String get flashcardComplete => 'Studiepasset är klart';
+
+  @override
+  String flashcardScore(Object known, Object total) {
+    return 'Du kunde $known av $total flashcards.';
+  }
+
+  @override
+  String get restartStudy => 'Studera igen';
 
   @override
   String get sshClientTitle => 'SSH-klient';

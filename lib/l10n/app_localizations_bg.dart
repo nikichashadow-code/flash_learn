@@ -78,6 +78,32 @@ class AppLocalizationsBg extends AppLocalizations {
   String get navTerminal => 'Терминал';
 
   @override
+  String get flashcardsTitle => 'Флашкарти';
+
+  @override
+  String get requiredField => 'Това поле е задължително';
+
+  @override
+  String get createSetSubtitle =>
+      'Напиши въпрос и отговор, за да добавиш карта към учебната си библиотека.';
+
+  @override
+  String get frontQuestionHint => 'Какво искаш да запомниш?';
+
+  @override
+  String get backAnswerHint => 'Напиши обяснението или отговора';
+
+  @override
+  String get noFlashcards => 'Все още няма флашкарти';
+
+  @override
+  String get createFirstFlashcard =>
+      'Създай първата си флашкарта, за да започнеш да учиш.';
+
+  @override
+  String get studyFlashcards => 'Учи с флашкарти';
+
+  @override
   String get exploreTopics => 'Разгледай теми';
 
   @override
@@ -300,6 +326,17 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get dontKnow => 'Не знам';
+
+  @override
+  String get flashcardComplete => 'Сесията за учене завърши';
+
+  @override
+  String flashcardScore(Object known, Object total) {
+    return 'Знаеше $known от $total флашкарти.';
+  }
+
+  @override
+  String get restartStudy => 'Учи отново';
 
   @override
   String get sshClientTitle => 'SSH клиент';

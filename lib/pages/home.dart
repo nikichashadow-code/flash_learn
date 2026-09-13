@@ -101,6 +101,13 @@ class HomePageState extends State<HomePage> {
                           () =>
                               Navigator.of(context).pushNamed('/linux_distros'),
                     ),
+                    _TopicCard(
+                      index: 4,
+                      icon: Icons.style_outlined,
+                      title: context.l10n.flashcardsTitle,
+                      onTap:
+                          () => Navigator.of(context).pushNamed('/flashcards'),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 40),

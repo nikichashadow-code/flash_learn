@@ -17,6 +17,8 @@ import 'pages/Linux_Basics.dart';
 import 'pages/distributions_and_ecosystem.dart';
 import 'pages/ssh_client_page.dart';
 import 'pages/settings_page.dart';
+import 'flashcards/create_set.dart';
+import 'flashcards/flashcard_library.dart';
 import 'terminal_simulator/terminal_emulator_page.dart' as terminal_simulator;
 
 void main() async {
@@ -52,6 +54,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  static const _localePreferenceKey = 'selected_locale';
   bool _loading = true;
   bool _onboardingDone = false;
   User? _user;
@@ -60,12 +63,20 @@ class _MyAppState extends State<MyApp> {
 
   void setLocale(Locale? locale) {
     setState(() => _locale = locale);
+    SharedPreferences.getInstance().then((prefs) async {
+      if (locale == null) {
+        await prefs.remove(_localePreferenceKey);
+      } else {
+        await prefs.setString(_localePreferenceKey, locale.languageCode);
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
     _checkOnboarding();
+    _loadLocale();
     // Listen for auth state changes
     Supabase.instance.client.auth.onAuthStateChange.listen((data) {
       setState(() {
@@ -87,6 +98,13 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _onboardingDone = prefs.getBool('onboarding_done') ?? false;
     });
+  }
+
+  Future<void> _loadLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    final languageCode = prefs.getString(_localePreferenceKey);
+    if (!mounted || languageCode == null) return;
+    setState(() => _locale = Locale(languageCode));
   }
 
   ThemeData _themeFrom(ColorScheme scheme) {
@@ -130,18 +148,20 @@ class _MyAppState extends State<MyApp> {
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
         final lightScheme =
             lightDynamic ?? ColorScheme.fromSeed(seedColor: _fallbackSeedColor);
-        final darkScheme = darkDynamic ??
+        final darkScheme =
+            darkDynamic ??
             ColorScheme.fromSeed(
               seedColor: _fallbackSeedColor,
               brightness: Brightness.dark,
             );
 
         Widget home;
-        final homeStateKey = _loading
-            ? const ValueKey('loading')
-            : (!_onboardingDone
-                  ? const ValueKey('welcome')
-                  : (_user != null
+        final homeStateKey =
+            _loading
+                ? const ValueKey('loading')
+                : (!_onboardingDone
+                    ? const ValueKey('welcome')
+                    : (_user != null
                         ? const ValueKey('home')
                         : const ValueKey('auth')));
         if (_loading) {
@@ -194,9 +214,12 @@ class _MyAppState extends State<MyApp> {
             '/terminal_quiz': (context) => const TerminalQuizPage(),
             '/linux_history': (context) => const LinuxHistoryPage(),
             '/linux_basics': (context) => const LinuxBasicsPage(),
-            '/linux_distros': (context) => const DistributionsAndEcosystemPage(),
+            '/linux_distros':
+                (context) => const DistributionsAndEcosystemPage(),
             '/ssh_client': (context) => const SSHClientPage(),
             '/settings': (context) => const SettingsPage(),
+            '/create_set': (context) => const CreateSetPage(),
+            '/flashcards': (context) => const FlashcardLibraryPage(),
             '/terminal_emulator':
                 (context) => const terminal_simulator.TerminalEmulatorPage(),
           },
