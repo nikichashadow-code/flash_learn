@@ -30,6 +30,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get swedish => 'Svenska';
 
   @override
+  String get norwegian => 'Norska';
+
+  @override
   String get settingsTitle => 'Inställningar';
 
   @override
@@ -191,6 +194,62 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get linuxHistoryTitle => 'Linux historia';
+
+  @override
+  String get historyGnuProjectTitle => 'GNU-projektet tillkännages';
+
+  @override
+  String get historyGnuProjectDetails =>
+      'Richard Stallman startar GNU-projektet med målet att skapa ett fritt Unix-liknande operativsystem. GNU-projektet tillhandahöll många viktiga verktyg och funktioner, men kärnan GNU Hurd var inte redo för bred användning.';
+
+  @override
+  String get historyLinuxKernelTitle => 'Linuxkärnan skapas';
+
+  @override
+  String get historyLinuxKernelDetails =>
+      'Den finländska studenten Linus Torvalds tillkännager Linuxkärnan i nyhetsgruppen comp.os.minix. Han bjuder in till samarbete och lockar snabbt en global gemenskap av utvecklare. Den första versionen (0.01) släpps i september 1991.';
+
+  @override
+  String get historyOpenSourceTitle => 'Linux blir öppen källkod';
+
+  @override
+  String get historyOpenSourceDetails =>
+      'Linux licensieras om under GNU General Public License (GPL), vilket gör systemet fritt och öppet. Det låter vem som helst använda, ändra och distribuera Linux, vilket påskyndar utvecklingen och spridningen.';
+
+  @override
+  String get historyFirstDistributionsTitle => 'De första distributionerna';
+
+  @override
+  String get historyFirstDistributionsDetails =>
+      'Distributioner som Slackware och Debian släpps och gör Linux enklare att installera och använda. Distributionerna kombinerar Linuxkärnan med GNU-verktyg och annan programvara för att skapa ett komplett operativsystem.';
+
+  @override
+  String get historyTuxTitle => 'Tux pingvinen';
+
+  @override
+  String get historyTuxDetails =>
+      'Pingvinen Tux väljs som Linux officiella maskot. Tux, som designats av Larry Ewing, blir en symbol för Linuxgemenskapens lekfulla och vänliga anda.';
+
+  @override
+  String get historyUbuntuTitle => 'Ubuntu lanseras';
+
+  @override
+  String get historyUbuntuDetails =>
+      'Ubuntu släpps med fokus på användarvänlighet och regelbundna utgåvor. Det blir snabbt en av de mest populära Linuxdistributionerna för datorer och servrar.';
+
+  @override
+  String get historyServersCloudTitle => 'Linux dominerar servrar och moln';
+
+  @override
+  String get historyServersCloudDetails =>
+      'Linux blir det dominerande operativsystemet för servrar, superdatorer och molninfrastruktur. Android, som bygger på Linuxkärnan, blir världens mest populära mobila operativsystem.';
+
+  @override
+  String get historyEverywhereTitle => 'Linux överallt';
+
+  @override
+  String get historyEverywhereDetails =>
+      'Linux driver smartphones, smart-tv-apparater, bilar, inbyggda enheter och världens snabbaste superdatorer. Gemenskapen för öppen källkod fortsätter att driva innovation och samarbete.';
 
   @override
   String get linuxBasicsTitle => 'Grunder i Linux OS';

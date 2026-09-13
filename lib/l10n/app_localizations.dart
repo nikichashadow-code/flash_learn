@@ -7,6 +7,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_bg.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_no.dart';
 import 'app_localizations_sv.dart';
 
 // ignore_for_file: type=lint
@@ -97,6 +98,7 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('bg'),
     Locale('en'),
+    Locale('no'),
     Locale('sv'),
   ];
 
@@ -141,6 +143,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Swedish'**
   String get swedish;
+
+  /// No description provided for @norwegian.
+  ///
+  /// In en, this message translates to:
+  /// **'Norwegian'**
+  String get norwegian;
 
   /// No description provided for @settingsTitle.
   ///
@@ -448,6 +456,102 @@ abstract class AppLocalizations {
   /// **'History of Linux'**
   String get linuxHistoryTitle;
 
+  /// No description provided for @historyGnuProjectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'GNU Project Announced'**
+  String get historyGnuProjectTitle;
+
+  /// No description provided for @historyGnuProjectDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Richard Stallman launches the GNU Project, aiming to create a free Unix-like operating system. The GNU Project provided many essential tools and utilities, but the kernel (GNU Hurd) was not ready for widespread use.'**
+  String get historyGnuProjectDetails;
+
+  /// No description provided for @historyLinuxKernelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux Kernel Created'**
+  String get historyLinuxKernelTitle;
+
+  /// No description provided for @historyLinuxKernelDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Linus Torvalds, a Finnish student, announces the Linux kernel on the comp.os.minix newsgroup. He invites collaboration and quickly attracts a global community of developers. The first version (0.01) is released in September 1991.'**
+  String get historyLinuxKernelDetails;
+
+  /// No description provided for @historyOpenSourceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux Goes Open Source'**
+  String get historyOpenSourceTitle;
+
+  /// No description provided for @historyOpenSourceDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux is relicensed under the GNU General Public License (GPL), making it free and open source. This allows anyone to use, modify, and distribute Linux, accelerating its development and adoption.'**
+  String get historyOpenSourceDetails;
+
+  /// No description provided for @historyFirstDistributionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Distributions'**
+  String get historyFirstDistributionsTitle;
+
+  /// No description provided for @historyFirstDistributionsDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Distributions like Slackware and Debian are released, making Linux easier to install and use. These distributions bundle the Linux kernel with GNU tools and other software, providing a complete operating system.'**
+  String get historyFirstDistributionsDetails;
+
+  /// No description provided for @historyTuxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tux the Penguin'**
+  String get historyTuxTitle;
+
+  /// No description provided for @historyTuxDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Tux the Penguin is chosen as the official Linux mascot. Designed by Larry Ewing, Tux becomes a symbol of the Linux community\'s fun and friendly spirit.'**
+  String get historyTuxDetails;
+
+  /// No description provided for @historyUbuntuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ubuntu Launches'**
+  String get historyUbuntuTitle;
+
+  /// No description provided for @historyUbuntuDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Ubuntu is released, focusing on user-friendliness and regular releases. It quickly becomes one of the most popular Linux distributions for desktops and servers.'**
+  String get historyUbuntuDetails;
+
+  /// No description provided for @historyServersCloudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux Dominates Servers & Cloud'**
+  String get historyServersCloudTitle;
+
+  /// No description provided for @historyServersCloudDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux becomes the dominant operating system for servers, supercomputers, and cloud infrastructure. Android, based on the Linux kernel, becomes the world\'s most popular mobile OS.'**
+  String get historyServersCloudDetails;
+
+  /// No description provided for @historyEverywhereTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux Everywhere'**
+  String get historyEverywhereTitle;
+
+  /// No description provided for @historyEverywhereDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux powers smartphones, smart TVs, cars, embedded devices, and the world\'s fastest supercomputers. The open-source community continues to drive innovation and collaboration.'**
+  String get historyEverywhereDetails;
+
   /// No description provided for @linuxBasicsTitle.
   ///
   /// In en, this message translates to:
@@ -742,7 +846,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['bg', 'en', 'sv'].contains(locale.languageCode);
+      <String>['bg', 'en', 'no', 'sv'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -755,6 +859,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsBg();
     case 'en':
       return AppLocalizationsEn();
+    case 'no':
+      return AppLocalizationsNo();
     case 'sv':
       return AppLocalizationsSv();
   }

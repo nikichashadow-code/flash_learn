@@ -30,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get swedish => 'Swedish';
 
   @override
+  String get norwegian => 'Norwegian';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
@@ -190,6 +193,62 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get linuxHistoryTitle => 'History of Linux';
+
+  @override
+  String get historyGnuProjectTitle => 'GNU Project Announced';
+
+  @override
+  String get historyGnuProjectDetails =>
+      'Richard Stallman launches the GNU Project, aiming to create a free Unix-like operating system. The GNU Project provided many essential tools and utilities, but the kernel (GNU Hurd) was not ready for widespread use.';
+
+  @override
+  String get historyLinuxKernelTitle => 'Linux Kernel Created';
+
+  @override
+  String get historyLinuxKernelDetails =>
+      'Linus Torvalds, a Finnish student, announces the Linux kernel on the comp.os.minix newsgroup. He invites collaboration and quickly attracts a global community of developers. The first version (0.01) is released in September 1991.';
+
+  @override
+  String get historyOpenSourceTitle => 'Linux Goes Open Source';
+
+  @override
+  String get historyOpenSourceDetails =>
+      'Linux is relicensed under the GNU General Public License (GPL), making it free and open source. This allows anyone to use, modify, and distribute Linux, accelerating its development and adoption.';
+
+  @override
+  String get historyFirstDistributionsTitle => 'First Distributions';
+
+  @override
+  String get historyFirstDistributionsDetails =>
+      'Distributions like Slackware and Debian are released, making Linux easier to install and use. These distributions bundle the Linux kernel with GNU tools and other software, providing a complete operating system.';
+
+  @override
+  String get historyTuxTitle => 'Tux the Penguin';
+
+  @override
+  String get historyTuxDetails =>
+      'Tux the Penguin is chosen as the official Linux mascot. Designed by Larry Ewing, Tux becomes a symbol of the Linux community\'s fun and friendly spirit.';
+
+  @override
+  String get historyUbuntuTitle => 'Ubuntu Launches';
+
+  @override
+  String get historyUbuntuDetails =>
+      'Ubuntu is released, focusing on user-friendliness and regular releases. It quickly becomes one of the most popular Linux distributions for desktops and servers.';
+
+  @override
+  String get historyServersCloudTitle => 'Linux Dominates Servers & Cloud';
+
+  @override
+  String get historyServersCloudDetails =>
+      'Linux becomes the dominant operating system for servers, supercomputers, and cloud infrastructure. Android, based on the Linux kernel, becomes the world\'s most popular mobile OS.';
+
+  @override
+  String get historyEverywhereTitle => 'Linux Everywhere';
+
+  @override
+  String get historyEverywhereDetails =>
+      'Linux powers smartphones, smart TVs, cars, embedded devices, and the world\'s fastest supercomputers. The open-source community continues to drive innovation and collaboration.';
 
   @override
   String get linuxBasicsTitle => 'Linux OS Basics';

@@ -148,43 +148,54 @@ class AuthPageState extends State<AuthPage> {
                       onPressed: () {
                         showModalBottomSheet(
                           context: context,
-                          builder: (sheetContext) => SafeArea(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ListTile(
-                                  leading: const Icon(Icons.language),
-                                  title: Text(context.l10n.english),
-                                  onTap: () {
-                                    MyApp.controllerOf(
-                                      context,
-                                    ).setLocale(const Locale('en'));
-                                    Navigator.pop(sheetContext);
-                                  },
+                          builder:
+                              (sheetContext) => SafeArea(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      leading: const Icon(Icons.language),
+                                      title: Text(context.l10n.english),
+                                      onTap: () {
+                                        MyApp.controllerOf(
+                                          context,
+                                        ).setLocale(const Locale('en'));
+                                        Navigator.pop(sheetContext);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: const Icon(Icons.language),
+                                      title: Text(context.l10n.bulgarian),
+                                      onTap: () {
+                                        MyApp.controllerOf(
+                                          context,
+                                        ).setLocale(const Locale('bg'));
+                                        Navigator.pop(sheetContext);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: const Icon(Icons.language),
+                                      title: Text(context.l10n.swedish),
+                                      onTap: () {
+                                        MyApp.controllerOf(
+                                          context,
+                                        ).setLocale(const Locale('sv'));
+                                        Navigator.pop(sheetContext);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: const Icon(Icons.language),
+                                      title: Text(context.l10n.norwegian),
+                                      onTap: () {
+                                        MyApp.controllerOf(
+                                          context,
+                                        ).setLocale(const Locale('no'));
+                                        Navigator.pop(sheetContext);
+                                      },
+                                    ),
+                                  ],
                                 ),
-                                ListTile(
-                                  leading: const Icon(Icons.language),
-                                  title: Text(context.l10n.bulgarian),
-                                  onTap: () {
-                                    MyApp.controllerOf(
-                                      context,
-                                    ).setLocale(const Locale('bg'));
-                                    Navigator.pop(sheetContext);
-                                  },
-                                ),
-                                ListTile(
-                                  leading: const Icon(Icons.language),
-                                  title: Text(context.l10n.swedish),
-                                  onTap: () {
-                                    MyApp.controllerOf(
-                                      context,
-                                    ).setLocale(const Locale('sv'));
-                                    Navigator.pop(sheetContext);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
+                              ),
                         );
                       },
                     ),
@@ -197,8 +208,9 @@ class AuthPageState extends State<AuthPage> {
                         duration: const Duration(milliseconds: 700),
                         curve: Curves.elasticOut,
                         tween: Tween(begin: 0.7, end: 1),
-                        builder: (context, value, child) =>
-                            Transform.scale(scale: value, child: child),
+                        builder:
+                            (context, value, child) =>
+                                Transform.scale(scale: value, child: child),
                         child: Icon(
                           Icons.flash_on,
                           color: scheme.primary,
@@ -217,16 +229,17 @@ class AuthPageState extends State<AuthPage> {
                       const SizedBox(height: 48),
                       AnimatedSwitcher(
                         duration: const Duration(milliseconds: 300),
-                        transitionBuilder: (child, animation) => FadeTransition(
-                          opacity: animation,
-                          child: SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(0, 0.1),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          ),
-                        ),
+                        transitionBuilder:
+                            (child, animation) => FadeTransition(
+                              opacity: animation,
+                              child: SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: const Offset(0, 0.1),
+                                  end: Offset.zero,
+                                ).animate(animation),
+                                child: child,
+                              ),
+                            ),
                         child: Text(
                           _isLogin
                               ? context.l10n.welcomeBack
@@ -245,7 +258,9 @@ class AuthPageState extends State<AuthPage> {
                             ? context.l10n.loginToContinue
                             : context.l10n.createAccountToContinue,
                         style: TextStyle(
-                          color: scheme.onSurface.withAlpha((0.7 * 255).round()),
+                          color: scheme.onSurface.withAlpha(
+                            (0.7 * 255).round(),
+                          ),
                           fontSize: 20,
                         ),
                       ),
@@ -268,7 +283,9 @@ class AuthPageState extends State<AuthPage> {
                           ),
                           hintText: context.l10n.email,
                           hintStyle: TextStyle(
-                            color: scheme.onSurface.withAlpha((0.6 * 255).round()),
+                            color: scheme.onSurface.withAlpha(
+                              (0.6 * 255).round(),
+                            ),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(32),
@@ -292,7 +309,9 @@ class AuthPageState extends State<AuthPage> {
                           ),
                           hintText: context.l10n.password,
                           hintStyle: TextStyle(
-                            color: scheme.onSurface.withAlpha((0.6 * 255).round()),
+                            color: scheme.onSurface.withAlpha(
+                              (0.6 * 255).round(),
+                            ),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(32),
@@ -338,34 +357,37 @@ class AuthPageState extends State<AuthPage> {
                       const SizedBox(height: 16),
                       SizedBox(
                         width: double.infinity,
-                        child: _loading
-                            ? const Center(child: CircularProgressIndicator())
-                            : AnimatedScale(
-                                duration: const Duration(milliseconds: 180),
-                                scale: 1,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: scheme.primary,
-                                    foregroundColor: scheme.onPrimary,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 18,
+                        child:
+                            _loading
+                                ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                                : AnimatedScale(
+                                  duration: const Duration(milliseconds: 180),
+                                  scale: 1,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: scheme.primary,
+                                      foregroundColor: scheme.onPrimary,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 18,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(32),
+                                      ),
                                     ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32),
-                                    ),
-                                  ),
-                                  onPressed: _authenticate,
-                                  child: Text(
-                                    _isLogin
-                                        ? context.l10n.login
-                                        : context.l10n.signUp,
-                                    style: const TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
+                                    onPressed: _authenticate,
+                                    child: Text(
+                                      _isLogin
+                                          ? context.l10n.login
+                                          : context.l10n.signUp,
+                                      style: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
                       ),
                       const SizedBox(height: 32),
                       Row(

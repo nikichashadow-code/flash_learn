@@ -30,6 +30,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get swedish => 'Шведски';
 
   @override
+  String get norwegian => 'Норвежки';
+
+  @override
   String get settingsTitle => 'Настройки';
 
   @override
@@ -191,6 +194,63 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get linuxHistoryTitle => 'История на Linux';
+
+  @override
+  String get historyGnuProjectTitle => 'Обявен е проектът GNU';
+
+  @override
+  String get historyGnuProjectDetails =>
+      'Ричард Столман стартира проекта GNU с цел създаване на свободна Unix-подобна операционна система. Проектът GNU предоставя много основни инструменти и помощни програми, но ядрото GNU Hurd не е готово за широко използване.';
+
+  @override
+  String get historyLinuxKernelTitle => 'Създадено е ядрото Linux';
+
+  @override
+  String get historyLinuxKernelDetails =>
+      'Финландският студент Линус Торвалдс обявява ядрото Linux в новинарската група comp.os.minix. Той кани други разработчици да се присъединят и бързо привлича глобална общност. Първата версия (0.01) е публикувана през септември 1991 г.';
+
+  @override
+  String get historyOpenSourceTitle => 'Linux става с отворен код';
+
+  @override
+  String get historyOpenSourceDetails =>
+      'Linux е лицензирана отново под GNU General Public License (GPL), което я прави свободна система с отворен код. Това позволява на всеки да използва, променя и разпространява Linux, ускорявайки развитието и приемането му.';
+
+  @override
+  String get historyFirstDistributionsTitle => 'Първи дистрибуции';
+
+  @override
+  String get historyFirstDistributionsDetails =>
+      'Дистрибуции като Slackware и Debian са публикувани, което улеснява инсталирането и използването на Linux. Те обединяват ядрото Linux с GNU инструменти и друг софтуер, за да предоставят цялостна операционна система.';
+
+  @override
+  String get historyTuxTitle => 'Пингвинът Tux';
+
+  @override
+  String get historyTuxDetails =>
+      'Пингвинът Tux е избран за официален талисман на Linux. Създаден от Лари Юинг, Tux се превръща в символ на забавния и приятелски дух на общността Linux.';
+
+  @override
+  String get historyUbuntuTitle => 'Стартира Ubuntu';
+
+  @override
+  String get historyUbuntuDetails =>
+      'Ubuntu е публикувана с фокус върху лесната употреба и редовните издания. Бързо се превръща в една от най-популярните Linux дистрибуции за настолни компютри и сървъри.';
+
+  @override
+  String get historyServersCloudTitle =>
+      'Linux доминира при сървърите и облака';
+
+  @override
+  String get historyServersCloudDetails =>
+      'Linux се превръща във водещата операционна система за сървъри, суперкомпютри и облачна инфраструктура. Android, базирана на ядрото Linux, става най-популярната мобилна операционна система в света.';
+
+  @override
+  String get historyEverywhereTitle => 'Linux навсякъде';
+
+  @override
+  String get historyEverywhereDetails =>
+      'Linux работи на смартфони, смарт телевизори, автомобили, вградени устройства и най-бързите суперкомпютри в света. Общността с отворен код продължава да насърчава иновациите и сътрудничеството.';
 
   @override
   String get linuxBasicsTitle => 'Основи на Linux';

@@ -8,7 +8,9 @@ import '../main.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
-  static final Uri _githubUrl = Uri.parse('https://github.com/nikichashadow-code');
+  static final Uri _githubUrl = Uri.parse(
+    'https://github.com/nikichashadow-code',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,7 @@ class SettingsPage extends StatelessWidget {
         Localizations.maybeLocaleOf(context) ?? const Locale('en');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.settingsTitle),
-      ),
+      appBar: AppBar(title: Text(context.l10n.settingsTitle)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -67,6 +67,16 @@ class SettingsPage extends StatelessWidget {
                   }
                 },
               ),
+              RadioListTile<String>(
+                title: Text(context.l10n.norwegian),
+                value: 'no',
+                groupValue: currentLocale.languageCode,
+                onChanged: (value) {
+                  if (value != null) {
+                    MyApp.controllerOf(context).setLocale(Locale(value));
+                  }
+                },
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -87,10 +97,9 @@ class SettingsPage extends StatelessWidget {
                     onPressed: () async {
                       await Supabase.instance.client.auth.signOut();
                       if (context.mounted) {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/login',
-                          (route) => false,
-                        );
+                        Navigator.of(
+                          context,
+                        ).pushNamedAndRemoveUntil('/login', (route) => false);
                       }
                     },
                     icon: const Icon(Icons.logout),
@@ -121,7 +130,10 @@ class SettingsPage extends StatelessWidget {
                 subtitle: const Text('nikichashadow-code'),
                 trailing: const Icon(Icons.open_in_new),
                 onTap: () async {
-                  await launchUrl(_githubUrl, mode: LaunchMode.externalApplication);
+                  await launchUrl(
+                    _githubUrl,
+                    mode: LaunchMode.externalApplication,
+                  );
                 },
               ),
             ],

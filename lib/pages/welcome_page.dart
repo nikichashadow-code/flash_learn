@@ -19,11 +19,7 @@ class WelcomePage extends StatelessWidget {
             children: [
               const SizedBox(height: 32),
               // Linux icon
-              FaIcon(
-                FontAwesomeIcons.linux,
-                color: scheme.primary,
-                size: 64,
-              ),
+              FaIcon(FontAwesomeIcons.linux, color: scheme.primary, size: 64),
               const SizedBox(height: 24),
               Text(
                 context.l10n.welcomeTitle,
@@ -69,10 +65,22 @@ class WelcomePage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        _TopicIcon(icon: Icons.history, label: context.l10n.welcomeTopicHistory),
-                        _TopicIcon(icon: Icons.computer, label: context.l10n.welcomeTopicBasics),
-                        _TopicIcon(icon: FontAwesomeIcons.terminal, label: context.l10n.welcomeTopicTerminal),
-                        _TopicIcon(icon: Icons.info_outline, label: context.l10n.welcomeTopicDistros),
+                        _TopicIcon(
+                          icon: Icons.history,
+                          label: context.l10n.welcomeTopicHistory,
+                        ),
+                        _TopicIcon(
+                          icon: Icons.computer,
+                          label: context.l10n.welcomeTopicBasics,
+                        ),
+                        _TopicIcon(
+                          icon: Icons.terminal,
+                          label: context.l10n.welcomeTopicTerminal,
+                        ),
+                        _TopicIcon(
+                          icon: Icons.info_outline,
+                          label: context.l10n.welcomeTopicDistros,
+                        ),
                       ],
                     ),
                   ],

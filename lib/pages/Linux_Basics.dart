@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../l10n/l10n.dart';
 
 class LinuxBasicsPage extends StatelessWidget {
@@ -10,7 +9,7 @@ class LinuxBasicsPage extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final sections = [
       _Section(
-        icon: FontAwesomeIcons.linux,
+        icon: Icons.computer,
         title: "What is Linux?",
         content: '''
 Linux is a family of open-source Unix-like operating systems based on the Linux kernel. It's widely used for servers, desktops, and embedded systems due to its stability, flexibility, and security.
@@ -119,7 +118,7 @@ Linux uses a hierarchical file system starting at the root /. Common directories
       body: ListView.separated(
         padding: const EdgeInsets.all(20),
         itemCount: sections.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 18),
+        separatorBuilder: (_, _) => const SizedBox(height: 18),
         itemBuilder: (context, i) => _SectionCard(section: sections[i]),
       ),
     );
@@ -130,7 +129,11 @@ class _Section {
   final IconData icon;
   final String title;
   final String content;
-  const _Section({required this.icon, required this.title, required this.content});
+  const _Section({
+    required this.icon,
+    required this.title,
+    required this.content,
+  });
 }
 
 class _SectionCard extends StatelessWidget {

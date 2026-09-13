@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'terminal_comands.dart'; // Import the TerminalCommandsPage
@@ -83,7 +82,7 @@ class HomePageState extends State<HomePage> {
                     ),
                     _TopicCard(
                       index: 2,
-                      icon: FontAwesomeIcons.terminal,
+                      icon: Icons.terminal,
                       title: context.l10n.topicTerminalCommands,
                       onTap:
                           () => Navigator.push(
@@ -112,9 +111,18 @@ class HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: const Icon(Icons.home), label: context.l10n.navHome),
-          BottomNavigationBarItem(icon: const Icon(Icons.storage), label: context.l10n.navSsh),
-          BottomNavigationBarItem(icon: const Icon(Icons.code), label: context.l10n.navTerminal),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home),
+            label: context.l10n.navHome,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.storage),
+            label: context.l10n.navSsh,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.code),
+            label: context.l10n.navTerminal,
+          ),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {
