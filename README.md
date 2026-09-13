@@ -17,7 +17,6 @@ Educational mobile app for learning Linux, terminal commands, and system adminis
 
 ## Known Limitations
 
-- Flashcard and study set features are still being developed
 - Terminal simulator is in beta
 - Android only
 
