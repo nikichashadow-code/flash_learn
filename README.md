@@ -30,7 +30,6 @@ Ollama reports. **Model default** omits the `think` request field.
 
 ## Known Limitations
 
-- Flashcard and study set features are still being developed
 - Terminal simulator is in beta
 - Android only
 
