@@ -17,6 +17,7 @@ import 'pages/Linux_Basics.dart';
 import 'pages/distributions_and_ecosystem.dart';
 import 'pages/ssh_client_page.dart';
 import 'pages/settings_page.dart';
+import 'pages/gemini_tutor_page.dart';
 import 'flashcards/create_set.dart';
 import 'flashcards/flashcard_library.dart';
 import 'terminal_simulator/terminal_emulator_page.dart' as terminal_simulator;
@@ -218,6 +219,7 @@ class _MyAppState extends State<MyApp> {
                 (context) => const DistributionsAndEcosystemPage(),
             '/ssh_client': (context) => const SSHClientPage(),
             '/settings': (context) => const SettingsPage(),
+            '/ollama_tutor': (context) => const OllamaTutorPage(),
             '/create_set': (context) => const CreateSetPage(),
             '/flashcards': (context) => const FlashcardLibraryPage(),
             '/terminal_emulator':

@@ -69,6 +69,113 @@ class AppLocalizationsSv extends AppLocalizations {
       'Byggd med omsorg av nikichashadow · github.com/nikichashadow-code';
 
   @override
+  String get settingsTutor => 'AI-handledare';
+
+  @override
+  String get settingsTutorDescription =>
+      'Ange Ollama-serverns URL här. Välj en installerad modell och tankningsnivå i handledarchatten.';
+
+  @override
+  String get settingsTutorServerUrl => 'Ollama-serverns URL';
+
+  @override
+  String get settingsTutorModel => 'Modellnamn';
+
+  @override
+  String get settingsTutorInvalidUrl =>
+      'Ange en giltig HTTP- eller HTTPS-URL, inklusive port om det behövs.';
+
+  @override
+  String get settingsTutorRequired => 'Det här fältet är obligatoriskt.';
+
+  @override
+  String get settingsTutorSave => 'Spara';
+
+  @override
+  String get settingsTutorReset => 'Använd standardvärden';
+
+  @override
+  String get settingsTutorSaved => 'AI-handledarens inställningar har sparats.';
+
+  @override
+  String get settingsTutorResetDone =>
+      'AI-handledarens inställningar har återställts.';
+
+  @override
+  String get settingsTutorSaveError =>
+      'Det gick inte att spara AI-handledarens inställningar.';
+
+  @override
+  String get settingsTutorLoadError =>
+      'Det gick inte att läsa in AI-handledarens inställningar.';
+
+  @override
+  String get settingsTutorRetry => 'Försök läsa in inställningarna igen';
+
+  @override
+  String get settingsTutorRefreshingModels =>
+      'Uppdaterar installerade modeller...';
+
+  @override
+  String get settingsTutorSelectModel => 'Välj en modell';
+
+  @override
+  String get settingsTutorNoModelsFound =>
+      'Inga installerade modeller hittades på servern.';
+
+  @override
+  String get settingsTutorModelFetchError =>
+      'Det gick inte att hämta de installerade modellerna.';
+
+  @override
+  String get settingsTutorThinking => 'Tankningsnivå';
+
+  @override
+  String get settingsTutorThinkingDescription =>
+      'Tankningsalternativ uppdateras automatiskt för den valda modellen. Ollama anger vilka alternativ som är tillgängliga.';
+
+  @override
+  String get settingsTutorThinkingOff => 'Modellens standard';
+
+  @override
+  String get settingsTutorThinkingOn => 'På';
+
+  @override
+  String get settingsTutorThinkingFalse => 'Av';
+
+  @override
+  String get settingsTutorThinkingLow => 'Låg';
+
+  @override
+  String get settingsTutorThinkingMedium => 'Medel';
+
+  @override
+  String get settingsTutorThinkingHigh => 'Hög';
+
+  @override
+  String get settingsTutorCheckingThinking => 'Kontrollerar modellen...';
+
+  @override
+  String get settingsTutorThinkingSupported =>
+      'Ollama rapporterar tankningskontroller för modellen. Endast alternativen nedan är tillgängliga.';
+
+  @override
+  String get settingsTutorThinkingUnsupported =>
+      'Ollama rapporterar inga tankningskontroller för modellen.';
+
+  @override
+  String get settingsTutorThinkingUnknown =>
+      'Ollama tillhandahöll inga metadata om modellens tankningsalternativ.';
+
+  @override
+  String get settingsTutorThinkingCheckError =>
+      'Det gick inte att kontrollera modellens stöd för tänkande.';
+
+  @override
+  String get settingsTutorThinkingSelectionReset =>
+      'Det tidigare valda tankningsalternativet stöds inte av modellen; modellens standard används.';
+
+  @override
   String get navHome => 'Hem';
 
   @override

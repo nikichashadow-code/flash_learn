@@ -69,6 +69,114 @@ class AppLocalizationsBg extends AppLocalizations {
       'Създадено с внимание от nikichashadow · github.com/nikichashadow-code';
 
   @override
+  String get settingsTutor => 'AI преподавател';
+
+  @override
+  String get settingsTutorDescription =>
+      'Задай URL адреса на Ollama сървъра тук. Избери инсталиран модел и ниво на мислене в чата с преподавателя.';
+
+  @override
+  String get settingsTutorServerUrl => 'URL адрес на Ollama сървъра';
+
+  @override
+  String get settingsTutorModel => 'Име на модела';
+
+  @override
+  String get settingsTutorInvalidUrl =>
+      'Въведи валиден HTTP или HTTPS адрес, включително порт, ако е необходимо.';
+
+  @override
+  String get settingsTutorRequired => 'Това поле е задължително.';
+
+  @override
+  String get settingsTutorSave => 'Запази';
+
+  @override
+  String get settingsTutorReset => 'Използвай стойностите по подразбиране';
+
+  @override
+  String get settingsTutorSaved =>
+      'Настройките на AI преподавателя са запазени.';
+
+  @override
+  String get settingsTutorResetDone =>
+      'Настройките на AI преподавателя са възстановени.';
+
+  @override
+  String get settingsTutorSaveError =>
+      'Настройките на AI преподавателя не можаха да бъдат запазени.';
+
+  @override
+  String get settingsTutorLoadError =>
+      'Настройките на AI преподавателя не можаха да бъдат заредени.';
+
+  @override
+  String get settingsTutorRetry => 'Опитай отново да заредиш настройките';
+
+  @override
+  String get settingsTutorRefreshingModels =>
+      'Обновяване на инсталираните модели...';
+
+  @override
+  String get settingsTutorSelectModel => 'Избери модел';
+
+  @override
+  String get settingsTutorNoModelsFound =>
+      'На този сървър не са намерени инсталирани модели.';
+
+  @override
+  String get settingsTutorModelFetchError =>
+      'Инсталираните модели не можаха да бъдат получени.';
+
+  @override
+  String get settingsTutorThinking => 'Интензивност на мисленето';
+
+  @override
+  String get settingsTutorThinkingDescription =>
+      'Опциите за мислене се обновяват автоматично за избрания модел. Ollama показва кои опции са налични.';
+
+  @override
+  String get settingsTutorThinkingOff => 'По подразбиране за модела';
+
+  @override
+  String get settingsTutorThinkingOn => 'Включено';
+
+  @override
+  String get settingsTutorThinkingFalse => 'Изключено';
+
+  @override
+  String get settingsTutorThinkingLow => 'Ниска';
+
+  @override
+  String get settingsTutorThinkingMedium => 'Средна';
+
+  @override
+  String get settingsTutorThinkingHigh => 'Висока';
+
+  @override
+  String get settingsTutorCheckingThinking => 'Проверка на модела...';
+
+  @override
+  String get settingsTutorThinkingSupported =>
+      'Ollama отчита настройки за мислене за този модел. Достъпни са само опциите по-долу.';
+
+  @override
+  String get settingsTutorThinkingUnsupported =>
+      'Ollama не отчита настройки за мислене за този модел.';
+
+  @override
+  String get settingsTutorThinkingUnknown =>
+      'Ollama не предостави данни за опциите за мислене на този модел.';
+
+  @override
+  String get settingsTutorThinkingCheckError =>
+      'Поддръжката на мислене за този модел не можа да бъде проверена.';
+
+  @override
+  String get settingsTutorThinkingSelectionReset =>
+      'Избраната преди това опция за мислене не се поддържа от този модел; използва се стойността по подразбиране.';
+
+  @override
   String get navHome => 'Начало';
 
   @override

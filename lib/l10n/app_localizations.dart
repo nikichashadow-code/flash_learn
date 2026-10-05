@@ -216,6 +216,192 @@ abstract class AppLocalizations {
   /// **'Built with care by nikichashadow · github.com/nikichashadow-code'**
   String get settingsFooterCredit;
 
+  /// No description provided for @settingsTutor.
+  ///
+  /// In en, this message translates to:
+  /// **'AI tutor'**
+  String get settingsTutor;
+
+  /// No description provided for @settingsTutorDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the Ollama server URL here. Choose an installed model and thinking level in the tutor chat.'**
+  String get settingsTutorDescription;
+
+  /// No description provided for @settingsTutorServerUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Ollama server URL'**
+  String get settingsTutorServerUrl;
+
+  /// No description provided for @settingsTutorModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Model name'**
+  String get settingsTutorModel;
+
+  /// No description provided for @settingsTutorInvalidUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid HTTP or HTTPS URL, including the port if needed.'**
+  String get settingsTutorInvalidUrl;
+
+  /// No description provided for @settingsTutorRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required.'**
+  String get settingsTutorRequired;
+
+  /// No description provided for @settingsTutorSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get settingsTutorSave;
+
+  /// No description provided for @settingsTutorReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Use defaults'**
+  String get settingsTutorReset;
+
+  /// No description provided for @settingsTutorSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'AI tutor settings saved.'**
+  String get settingsTutorSaved;
+
+  /// No description provided for @settingsTutorResetDone.
+  ///
+  /// In en, this message translates to:
+  /// **'AI tutor settings restored to defaults.'**
+  String get settingsTutorResetDone;
+
+  /// No description provided for @settingsTutorSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save AI tutor settings.'**
+  String get settingsTutorSaveError;
+
+  /// No description provided for @settingsTutorLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load AI tutor settings.'**
+  String get settingsTutorLoadError;
+
+  /// No description provided for @settingsTutorRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry loading settings'**
+  String get settingsTutorRetry;
+
+  /// No description provided for @settingsTutorRefreshingModels.
+  ///
+  /// In en, this message translates to:
+  /// **'Refreshing installed models...'**
+  String get settingsTutorRefreshingModels;
+
+  /// No description provided for @settingsTutorSelectModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a model'**
+  String get settingsTutorSelectModel;
+
+  /// No description provided for @settingsTutorNoModelsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No installed models were found on this server.'**
+  String get settingsTutorNoModelsFound;
+
+  /// No description provided for @settingsTutorModelFetchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not retrieve the installed models.'**
+  String get settingsTutorModelFetchError;
+
+  /// No description provided for @settingsTutorThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking effort'**
+  String get settingsTutorThinking;
+
+  /// No description provided for @settingsTutorThinkingDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking options refresh automatically for the selected model. Ollama reports which options are available.'**
+  String get settingsTutorThinkingDescription;
+
+  /// No description provided for @settingsTutorThinkingOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Model default'**
+  String get settingsTutorThinkingOff;
+
+  /// No description provided for @settingsTutorThinkingOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get settingsTutorThinkingOn;
+
+  /// No description provided for @settingsTutorThinkingFalse.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settingsTutorThinkingFalse;
+
+  /// No description provided for @settingsTutorThinkingLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get settingsTutorThinkingLow;
+
+  /// No description provided for @settingsTutorThinkingMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get settingsTutorThinkingMedium;
+
+  /// No description provided for @settingsTutorThinkingHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get settingsTutorThinkingHigh;
+
+  /// No description provided for @settingsTutorCheckingThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking model...'**
+  String get settingsTutorCheckingThinking;
+
+  /// No description provided for @settingsTutorThinkingSupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Ollama reports thinking controls for this model. Only the options listed below are available.'**
+  String get settingsTutorThinkingSupported;
+
+  /// No description provided for @settingsTutorThinkingUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Ollama reports no thinking controls for this model.'**
+  String get settingsTutorThinkingUnsupported;
+
+  /// No description provided for @settingsTutorThinkingUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Ollama did not provide thinking option metadata for this model.'**
+  String get settingsTutorThinkingUnknown;
+
+  /// No description provided for @settingsTutorThinkingCheckError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not check thinking support for this model.'**
+  String get settingsTutorThinkingCheckError;
+
+  /// No description provided for @settingsTutorThinkingSelectionReset.
+  ///
+  /// In en, this message translates to:
+  /// **'The previously selected thinking option is not supported by this model; using the model default.'**
+  String get settingsTutorThinkingSelectionReset;
+
   /// No description provided for @navHome.
   ///
   /// In en, this message translates to:

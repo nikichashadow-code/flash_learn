@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/l10n.dart';
 import '../main.dart';
+import '../services/ollama_service.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -24,61 +25,48 @@ class SettingsPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _SettingsHero(userEmail: user?.email),
-          const SizedBox(height: 12),
           _SettingsSectionCard(
             title: context.l10n.settingsAppearance,
             icon: Icons.palette_outlined,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-                child: Text(
-                  context.l10n.settingsLanguage,
-                  style: Theme.of(context).textTheme.titleSmall,
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                child: DropdownButtonFormField<String>(
+                  initialValue: currentLocale.languageCode,
+                  isExpanded: true,
+                  decoration: InputDecoration(
+                    labelText: context.l10n.settingsLanguage,
+                    border: const OutlineInputBorder(),
+                  ),
+                  items: [
+                    DropdownMenuItem(
+                      value: 'en',
+                      child: Text(context.l10n.english),
+                    ),
+                    DropdownMenuItem(
+                      value: 'bg',
+                      child: Text(context.l10n.bulgarian),
+                    ),
+                    DropdownMenuItem(
+                      value: 'sv',
+                      child: Text(context.l10n.swedish),
+                    ),
+                    DropdownMenuItem(
+                      value: 'no',
+                      child: Text(context.l10n.norwegian),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    if (value != null) {
+                      MyApp.controllerOf(context).setLocale(Locale(value));
+                    }
+                  },
                 ),
-              ),
-              RadioListTile<String>(
-                title: Text(context.l10n.english),
-                value: 'en',
-                groupValue: currentLocale.languageCode,
-                onChanged: (value) {
-                  if (value != null) {
-                    MyApp.controllerOf(context).setLocale(Locale(value));
-                  }
-                },
-              ),
-              RadioListTile<String>(
-                title: Text(context.l10n.bulgarian),
-                value: 'bg',
-                groupValue: currentLocale.languageCode,
-                onChanged: (value) {
-                  if (value != null) {
-                    MyApp.controllerOf(context).setLocale(Locale(value));
-                  }
-                },
-              ),
-              RadioListTile<String>(
-                title: Text(context.l10n.swedish),
-                value: 'sv',
-                groupValue: currentLocale.languageCode,
-                onChanged: (value) {
-                  if (value != null) {
-                    MyApp.controllerOf(context).setLocale(Locale(value));
-                  }
-                },
-              ),
-              RadioListTile<String>(
-                title: Text(context.l10n.norwegian),
-                value: 'no',
-                groupValue: currentLocale.languageCode,
-                onChanged: (value) {
-                  if (value != null) {
-                    MyApp.controllerOf(context).setLocale(Locale(value));
-                  }
-                },
               ),
             ],
           ),
+          const SizedBox(height: 12),
+          const _TutorSettingsSection(),
           const SizedBox(height: 12),
           _SettingsSectionCard(
             title: context.l10n.settingsAccount,
@@ -153,88 +141,212 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-class _SettingsHero extends StatelessWidget {
-  const _SettingsHero({required this.userEmail});
+class _TutorSettingsSection extends StatefulWidget {
+  const _TutorSettingsSection();
 
-  final String? userEmail;
+  @override
+  State<_TutorSettingsSection> createState() => _TutorSettingsSectionState();
+}
+
+class _TutorSettingsSectionState extends State<_TutorSettingsSection> {
+  late Future<OllamaConfiguration> _configurationFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _configurationFuture = OllamaConfiguration.load();
+  }
+
+  void _reloadConfiguration() {
+    setState(() => _configurationFuture = OllamaConfiguration.load());
+  }
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0, end: 1),
-      duration: const Duration(milliseconds: 520),
-      curve: Curves.easeOutCubic,
-      builder: (context, value, child) {
-        return Opacity(
-          opacity: value,
-          child: Transform.translate(
-            offset: Offset(0, (1 - value) * 8),
-            child: child,
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.lerp(scheme.primaryContainer, scheme.surface, 0.28)!,
-              Color.lerp(scheme.secondaryContainer, scheme.surface, 0.2)!,
-            ],
-          ),
-          border: Border.all(color: scheme.outlineVariant.withAlpha(150)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: scheme.primary,
-                  child: Icon(Icons.settings, color: scheme.onPrimary),
+    return FutureBuilder<OllamaConfiguration>(
+      future: _configurationFuture,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return _TutorConfigurationForm(
+            configuration: snapshot.data!,
+            onReset: _reloadConfiguration,
+          );
+        }
+        if (snapshot.hasError) {
+          return _SettingsSectionCard(
+            title: context.l10n.settingsTutor,
+            icon: Icons.smart_toy_outlined,
+            children: [
+              ListTile(
+                title: Text(context.l10n.settingsTutorLoadError),
+                trailing: IconButton(
+                  tooltip: context.l10n.settingsTutorRetry,
+                  icon: const Icon(Icons.refresh),
+                  onPressed: _reloadConfiguration,
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    context.l10n.settingsTitle,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Text(
-              context.l10n.settingsHeroSubtitle,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: scheme.onSurfaceVariant,
-                height: 1.28,
               ),
-            ),
-            const SizedBox(height: 14),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                Chip(
-                  avatar: const Icon(Icons.palette_outlined, size: 16),
-                  label: Text(context.l10n.settingsAppearance),
-                ),
-                Chip(
-                  avatar: const Icon(Icons.person_outline, size: 16),
-                  label: Text(userEmail ?? context.l10n.unknown),
-                ),
-              ],
+            ],
+          );
+        }
+        return _SettingsSectionCard(
+          title: context.l10n.settingsTutor,
+          icon: Icons.smart_toy_outlined,
+          children: const [
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Center(child: CircularProgressIndicator()),
             ),
           ],
+        );
+      },
+    );
+  }
+}
+
+class _TutorConfigurationForm extends StatefulWidget {
+  const _TutorConfigurationForm({
+    required this.configuration,
+    required this.onReset,
+  });
+
+  final OllamaConfiguration configuration;
+  final VoidCallback onReset;
+
+  @override
+  State<_TutorConfigurationForm> createState() =>
+      _TutorConfigurationFormState();
+}
+
+class _TutorConfigurationFormState extends State<_TutorConfigurationForm> {
+  final _formKey = GlobalKey<FormState>();
+  late final TextEditingController _baseUrlController;
+  bool _isSaving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _baseUrlController = TextEditingController(
+      text: widget.configuration.baseUrl,
+    );
+  }
+
+  @override
+  void dispose() {
+    _baseUrlController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _save() async {
+    if (!_formKey.currentState!.validate()) return;
+    setState(() => _isSaving = true);
+    try {
+      final configuration = await OllamaConfiguration.load();
+      await OllamaConfiguration.save(
+        baseUrl: _baseUrlController.text,
+        model: configuration.model,
+        thinkingLevel: configuration.thinkingLevel,
+      );
+      if (mounted) _showMessage(context.l10n.settingsTutorSaved);
+    } on Exception {
+      if (mounted) _showMessage(context.l10n.settingsTutorSaveError);
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
+  Future<void> _reset() async {
+    setState(() => _isSaving = true);
+    try {
+      await OllamaConfiguration.reset();
+      final configuration = await OllamaConfiguration.load();
+      if (!mounted) return;
+      _baseUrlController.text = configuration.baseUrl;
+      _showMessage(context.l10n.settingsTutorResetDone);
+      widget.onReset();
+    } on Exception {
+      if (mounted) _showMessage(context.l10n.settingsTutorSaveError);
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return _SettingsSectionCard(
+      title: l10n.settingsTutor,
+      icon: Icons.smart_toy_outlined,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.settingsTutorDescription,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 16),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _baseUrlController,
+                      enabled: !_isSaving,
+                      keyboardType: TextInputType.url,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        labelText: l10n.settingsTutorServerUrl,
+                        hintText: 'http://192.168.1.10:11434',
+                        border: const OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return l10n.settingsTutorRequired;
+                        }
+                        return OllamaConfiguration.parseBaseUrl(value) == null
+                            ? l10n.settingsTutorInvalidUrl
+                            : null;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: _isSaving ? null : _reset,
+                    child: Text(l10n.settingsTutorReset),
+                  ),
+                  FilledButton.icon(
+                    onPressed: _isSaving ? null : _save,
+                    icon:
+                        _isSaving
+                            ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                            : const Icon(Icons.save_outlined),
+                    label: Text(l10n.settingsTutorSave),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -253,26 +365,19 @@ class _SettingsSectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    return Card(
-      elevation: 1,
-      shadowColor: scheme.shadow.withAlpha(40),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
-      child: Column(
-        children: [
-          ListTile(
-            leading: Icon(icon, color: scheme.primary),
-            title: Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.w700),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Icon(icon, color: scheme.primary),
+          title: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.w700),
           ),
-          const Divider(height: 1),
-          ...children,
-        ],
-      ),
+        ),
+        ...children,
+      ],
     );
   }
 }

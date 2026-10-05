@@ -108,6 +108,14 @@ class HomePageState extends State<HomePage> {
                       onTap:
                           () => Navigator.of(context).pushNamed('/flashcards'),
                     ),
+                    _TopicCard(
+                      index: 5,
+                      icon: Icons.auto_awesome,
+                      title: 'Ask Linux Tutor',
+                      onTap:
+                          () =>
+                              Navigator.of(context).pushNamed('/ollama_tutor'),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 40),

@@ -238,7 +238,7 @@ packages:
     source: hosted
     version: "11.0.0"
   functions_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: functions_client
       sha256: "931e822688d2e97867b2300e2fdbb08c9db73f8653fc83efc7a259d2e0cca769"
@@ -262,7 +262,7 @@ packages:
     source: hosted
     version: "2.2.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"

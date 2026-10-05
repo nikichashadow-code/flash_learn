@@ -69,6 +69,110 @@ class AppLocalizationsEn extends AppLocalizations {
       'Built with care by nikichashadow · github.com/nikichashadow-code';
 
   @override
+  String get settingsTutor => 'AI tutor';
+
+  @override
+  String get settingsTutorDescription =>
+      'Set the Ollama server URL here. Choose an installed model and thinking level in the tutor chat.';
+
+  @override
+  String get settingsTutorServerUrl => 'Ollama server URL';
+
+  @override
+  String get settingsTutorModel => 'Model name';
+
+  @override
+  String get settingsTutorInvalidUrl =>
+      'Enter a valid HTTP or HTTPS URL, including the port if needed.';
+
+  @override
+  String get settingsTutorRequired => 'This field is required.';
+
+  @override
+  String get settingsTutorSave => 'Save';
+
+  @override
+  String get settingsTutorReset => 'Use defaults';
+
+  @override
+  String get settingsTutorSaved => 'AI tutor settings saved.';
+
+  @override
+  String get settingsTutorResetDone =>
+      'AI tutor settings restored to defaults.';
+
+  @override
+  String get settingsTutorSaveError => 'Could not save AI tutor settings.';
+
+  @override
+  String get settingsTutorLoadError => 'Could not load AI tutor settings.';
+
+  @override
+  String get settingsTutorRetry => 'Retry loading settings';
+
+  @override
+  String get settingsTutorRefreshingModels => 'Refreshing installed models...';
+
+  @override
+  String get settingsTutorSelectModel => 'Select a model';
+
+  @override
+  String get settingsTutorNoModelsFound =>
+      'No installed models were found on this server.';
+
+  @override
+  String get settingsTutorModelFetchError =>
+      'Could not retrieve the installed models.';
+
+  @override
+  String get settingsTutorThinking => 'Thinking effort';
+
+  @override
+  String get settingsTutorThinkingDescription =>
+      'Thinking options refresh automatically for the selected model. Ollama reports which options are available.';
+
+  @override
+  String get settingsTutorThinkingOff => 'Model default';
+
+  @override
+  String get settingsTutorThinkingOn => 'On';
+
+  @override
+  String get settingsTutorThinkingFalse => 'Off';
+
+  @override
+  String get settingsTutorThinkingLow => 'Low';
+
+  @override
+  String get settingsTutorThinkingMedium => 'Medium';
+
+  @override
+  String get settingsTutorThinkingHigh => 'High';
+
+  @override
+  String get settingsTutorCheckingThinking => 'Checking model...';
+
+  @override
+  String get settingsTutorThinkingSupported =>
+      'Ollama reports thinking controls for this model. Only the options listed below are available.';
+
+  @override
+  String get settingsTutorThinkingUnsupported =>
+      'Ollama reports no thinking controls for this model.';
+
+  @override
+  String get settingsTutorThinkingUnknown =>
+      'Ollama did not provide thinking option metadata for this model.';
+
+  @override
+  String get settingsTutorThinkingCheckError =>
+      'Could not check thinking support for this model.';
+
+  @override
+  String get settingsTutorThinkingSelectionReset =>
+      'The previously selected thinking option is not supported by this model; using the model default.';
+
+  @override
   String get navHome => 'Home';
 
   @override
